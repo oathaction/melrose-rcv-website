@@ -24,6 +24,9 @@ export interface SourceEntry {
   url: string;
   status: ReviewStatus;
   note: string;
+  accessed?: string;
+  reliability?: "high" | "medium-high" | "medium" | "use-with-caution";
+  supports?: string;
 }
 
 export interface PlaceholderContent {
@@ -31,10 +34,16 @@ export interface PlaceholderContent {
   summary: string;
   status: PlaceholderStatus;
   reviewStatus: ReviewStatus;
+  category?: string;
+  sourceIds?: string[];
+  ctaLabel?: string;
+  ctaHref?: string;
 }
 
 export interface HomeRuleStep {
   label: string;
   summary: string;
   status: ReviewStatus;
+  sourceIds?: string[];
+  reviewNote?: string;
 }

@@ -8,60 +8,76 @@ export const defaultMeta: RouteMeta = {
 };
 
 export const pageMeta: Record<string, RouteMeta> = {
-  "/": defaultMeta,
+  "/": {
+    title: "Melrose Ranked-Choice Voting | Learn About RCV",
+    description:
+      "Learn about ranked-choice voting, why Melrose residents are discussing it, and the Massachusetts home rule petition path that would require legal and civic review.",
+    path: "/",
+  },
   "/what-is-rcv": {
-    title: "What Is RCV?",
-    description: "A plain-language placeholder introduction to ranked-choice voting.",
+    title: "What Is Ranked-Choice Voting? | Melrose RCV",
+    description:
+      "A plain-language explanation of ranked-choice voting, instant-runoff voting, and how ranked ballots differ from choose-one elections.",
     path: "/what-is-rcv",
   },
   "/how-it-works": {
-    title: "How It Works",
-    description: "Placeholder diagrams and steps for explaining an RCV count.",
+    title: "How Ranked-Choice Voting Works | Melrose RCV",
+    description:
+      "Learn how ranked-choice voting counts first choices, transfers ballots in rounds, and handles backup rankings.",
     path: "/how-it-works",
   },
   "/why-melrose": {
-    title: "Why Melrose?",
-    description: "Placeholder framing for local civic questions and context.",
+    title: "Why Consider Ranked-Choice Voting In Melrose?",
+    description:
+      "Explore why Melrose residents may consider ranked-choice voting, what supporters hope it could improve, and what questions need review.",
     path: "/why-melrose",
   },
   "/home-rule-petition": {
-    title: "Home Rule Petition",
-    description: "Placeholder overview of a Massachusetts home rule petition pathway.",
+    title: "Massachusetts Home Rule Petition Path For Melrose RCV",
+    description:
+      "Learn why a Melrose ranked-choice voting proposal would need legal review, local civic action, and likely state legislative authorization.",
     path: "/home-rule-petition",
   },
   "/melrose-elections": {
-    title: "Melrose Elections",
-    description: "Placeholder section for source-grounded Melrose election context.",
+    title: "Melrose Elections And Ranked-Choice Voting Context",
+    description:
+      "Review verified Melrose municipal election context and the local questions that would need review before any RCV proposal.",
     path: "/melrose-elections",
   },
   "/myths-and-facts": {
-    title: "Myths And Facts",
-    description: "Placeholder space for respectful, source-grounded answers.",
+    title: "Ranked-Choice Voting Myths, Facts, And Concerns",
+    description:
+      "A respectful guide to common RCV misconceptions, real implementation concerns, and what Melrose would still need to verify.",
     path: "/myths-and-facts",
   },
   "/faq": {
-    title: "FAQ",
-    description: "Starter questions for future source-grounded answers.",
+    title: "Ranked-Choice Voting FAQ For Melrose Residents",
+    description:
+      "Answers to common questions about ranked-choice voting, Melrose elections, home rule petitions, and implementation concerns.",
     path: "/faq",
   },
   "/about": {
     title: "About",
-    description: "Placeholder information about the Melrose RCV organizing project.",
+    description:
+      "Learn about the nonpartisan civic education and organizing effort exploring ranked-choice voting for Melrose municipal elections.",
     path: "/about",
   },
   "/contact": {
     title: "Contact",
-    description: "Placeholder contact page for future community outreach.",
+    description:
+      "Ask a question, join updates, or volunteer with the Melrose ranked-choice voting civic education effort.",
     path: "/contact",
   },
   "/donate": {
-    title: "Donate",
-    description: "Placeholder donation page pending campaign and compliance setup.",
+    title: "Support Melrose RCV",
+    description:
+      "Support the Melrose RCV civic education effort, or learn other ways to help once donation details are verified.",
     path: "/donate",
   },
   "/sources": {
-    title: "Sources",
-    description: "Placeholder source log and citation standards.",
+    title: "Sources For Melrose RCV Research",
+    description:
+      "Review the official, research, civic-design, and advocacy sources used to ground the Melrose RCV website.",
     path: "/sources",
   },
 };
