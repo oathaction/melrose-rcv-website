@@ -6,8 +6,9 @@ export const navItems: NavItem[] = [
   { label: "How It Works", href: "/how-it-works" },
   { label: "Why Melrose?", href: "/why-melrose" },
   { label: "Home Rule Petition", href: "/home-rule-petition" },
-  { label: "Melrose Elections", href: "/melrose-elections" },
+  { label: "Myths & Facts", href: "/myths-and-facts" },
   { label: "FAQ", href: "/faq" },
+  { label: "Sources", href: "/sources" },
   { label: "Contact", href: "/contact" },
   { label: "Donate", href: "/donate" },
 ];
