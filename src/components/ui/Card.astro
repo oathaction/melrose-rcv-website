@@ -1,16 +1,42 @@
 ---
 interface Props {
-  tone?: "plain" | "blue" | "green";
+  tone?: "plain" | "blue" | "green" | "gold" | "rust" | "lilac";
+  variant?: "standard" | "source" | "myth-fact" | "benefit" | "step" | "timeline";
+  class?: string;
 }
 
-const { tone = "plain" } = Astro.props;
+const { tone = "plain", variant = "standard", class: className = "" } = Astro.props;
+
 const toneClass = {
-  plain: "bg-white",
-  blue: "bg-blue-50",
-  green: "bg-emerald-50",
+  plain: "bg-[var(--color-surface)]",
+  blue: "bg-[var(--color-blue-50)]",
+  green: "bg-[var(--color-green-50)]",
+  gold: "bg-[var(--color-gold-50)]",
+  rust: "bg-[var(--color-rust-50)]",
+  lilac: "bg-[var(--color-lilac-50)]",
 }[tone];
+
+const variantClass = {
+  standard: "border-[var(--color-line)] shadow-[var(--shadow-xs)]",
+  source: "border-[var(--color-blue-100)] shadow-none before:bg-[var(--color-blue-700)]",
+  "myth-fact": "border-[var(--color-lilac-100)] shadow-none before:bg-[var(--color-lilac-600)]",
+  benefit: "border-[var(--color-green-100)] shadow-[var(--shadow-xs)] before:bg-[var(--color-green-700)]",
+  step: "border-[var(--color-gold-100)] shadow-none before:bg-[var(--color-gold-500)]",
+  timeline: "border-[var(--color-line)] shadow-[var(--shadow-xs)] before:bg-[var(--color-rust-600)]",
+}[variant];
+
+const hasAccent = variant !== "standard";
+const classes = [
+  "relative overflow-hidden rounded-[var(--radius-3)] border p-5",
+  hasAccent ? "before:absolute before:inset-x-0 before:top-0 before:h-1" : "",
+  toneClass,
+  variantClass,
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
 ---
 
-<article class:list={["rounded-sm border border-[var(--color-civic-line)] p-5 shadow-sm", toneClass]}>
+<article class={classes}>
   <slot />
 </article>
