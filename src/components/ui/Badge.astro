@@ -1,11 +1,22 @@
 ---
 interface Props {
   label: string;
+  tone?: "blue" | "green" | "gold" | "rust" | "lilac" | "neutral";
 }
 
-const { label } = Astro.props;
+const { label, tone = "blue" } = Astro.props;
+
+const toneClass = {
+  blue: "bg-[var(--color-blue-50)] text-[var(--color-blue-900)] ring-[var(--color-blue-100)]",
+  green: "bg-[var(--color-green-50)] text-[var(--color-green-900)] ring-[var(--color-green-100)]",
+  gold: "bg-[var(--color-gold-50)] text-[var(--color-gold-900)] ring-[var(--color-gold-100)]",
+  rust: "bg-[var(--color-rust-50)] text-[var(--color-rust-800)] ring-[var(--color-rust-100)]",
+  lilac: "bg-[var(--color-lilac-50)] text-[var(--color-lilac-800)] ring-[var(--color-lilac-100)]",
+  neutral: "bg-[var(--color-surface)] text-[var(--color-ink-soft)] ring-[var(--color-line)]",
+}[tone];
 ---
 
-<span class="inline-flex w-fit items-center rounded-sm bg-white px-3 py-1 text-xs font-semibold uppercase tracking-normal text-[var(--color-civic-blue)] ring-1 ring-[var(--color-civic-line)]">
+<span class:list={["inline-flex w-fit items-center gap-2 rounded-[var(--radius-pill)] px-3 py-1 text-xs font-bold uppercase tracking-normal ring-1", toneClass]}>
+  <span class="status-dot" aria-hidden="true"></span>
   {label}
 </span>
