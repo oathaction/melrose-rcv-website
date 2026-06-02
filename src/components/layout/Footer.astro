@@ -1,0 +1,30 @@
+---
+import { SITE_NAME, CONTACT_EMAIL } from "../../lib/constants";
+import { navItems } from "../../content/data/nav";
+---
+
+<footer class="border-t border-[var(--color-civic-line)] bg-white">
+  <div class="section-shell grid gap-6 py-8 md:grid-cols-[1fr_2fr]">
+    <div>
+      <p class="m-0 font-semibold">{SITE_NAME}</p>
+      <p class="mt-2 max-w-prose text-sm text-slate-700">
+        Nonpartisan civic education and community organizing for Melrose residents.
+      </p>
+      <p class="mt-2 text-sm">
+        <a class="focus-ring rounded-sm underline underline-offset-4" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      </p>
+    </div>
+    <nav aria-label="Footer navigation">
+      <ul class="grid gap-2 p-0 sm:grid-cols-2 lg:grid-cols-3">
+        {navItems.map((item) => (
+          <li class="list-none">
+            <a class="focus-ring rounded-sm text-sm underline-offset-4 hover:underline" href={item.href}>{item.label}</a>
+          </li>
+        ))}
+        <li class="list-none">
+          <a class="focus-ring rounded-sm text-sm underline-offset-4 hover:underline" href="/sources">Sources</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</footer>

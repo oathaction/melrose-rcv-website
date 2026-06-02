@@ -1,0 +1,15 @@
+---
+const choices = ["1st choice", "2nd choice", "3rd choice"];
+---
+
+<div class="rounded-sm border border-[var(--color-civic-line)] bg-white p-5" aria-label="Placeholder ranked ballot diagram">
+  <p class="m-0 text-sm font-semibold text-[var(--color-civic-blue)]">Ranked ballot placeholder</p>
+  <div class="mt-4 grid gap-3">
+    {choices.map((choice, index) => (
+      <div class="grid grid-cols-[2.5rem_1fr] items-center gap-3 rounded-sm border border-slate-200 p-3">
+        <span class="grid size-9 place-items-center rounded-sm bg-[var(--color-civic-blue)] text-sm font-bold text-white">{index + 1}</span>
+        <span class="text-sm text-slate-700">{choice}: Candidate placeholder</span>
+      </div>
+    ))}
+  </div>
+</div>

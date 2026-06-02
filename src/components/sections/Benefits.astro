@@ -1,0 +1,23 @@
+---
+import { benefits } from "../../content/data/benefits";
+import Card from "../ui/Card.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section class="bg-[var(--color-civic-paper)]">
+  <div class="section-shell py-12">
+    <SectionHeading
+      eyebrow="Potential benefits"
+      title="Benefits need source-grounded explanation"
+      summary="These cards reserve space for future claims that should be verified and cited."
+    />
+    <div class="mt-8 grid gap-4 md:grid-cols-3">
+      {benefits.map((benefit) => (
+        <Card>
+          <h3 class="m-0 text-lg font-semibold">{benefit.title}</h3>
+          <p class="mt-2 text-sm text-slate-700">{benefit.summary}</p>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

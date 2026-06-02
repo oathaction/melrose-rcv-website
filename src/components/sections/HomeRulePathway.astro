@@ -1,0 +1,29 @@
+---
+import { homeRuleSteps } from "../../content/data/homeRuleSteps";
+import Alert from "../ui/Alert.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section class="bg-white">
+  <div class="section-shell py-12">
+    <SectionHeading
+      eyebrow="Civic pathway"
+      title="Massachusetts home rule petition pathway"
+      summary="This placeholder section keeps the pathway visible while making clear that final language and process details need review."
+    />
+    <div class="mt-8 grid gap-4 md:grid-cols-2">
+      {homeRuleSteps.map((step) => (
+        <article class="rounded-sm border border-[var(--color-civic-line)] p-5">
+          <p class="m-0 text-sm font-semibold uppercase tracking-normal text-[var(--color-civic-green)]">{step.status}</p>
+          <h3 class="mt-2 text-xl font-semibold">{step.label}</h3>
+          <p class="mt-2 text-slate-700">{step.summary}</p>
+        </article>
+      ))}
+    </div>
+    <div class="mt-6">
+      <Alert title="Legal review placeholder">
+        <p class="m-0">Final petition language, implementation details, and election-administration timelines require review by appropriate authorities.</p>
+      </Alert>
+    </div>
+  </div>
+</section>

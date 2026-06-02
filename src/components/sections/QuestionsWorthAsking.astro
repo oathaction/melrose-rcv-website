@@ -1,0 +1,18 @@
+---
+const questions = [
+  "What would need to change in local election administration?",
+  "What legal review is required before petition language is final?",
+  "What information would residents need before deciding whether to support RCV?",
+];
+---
+
+<section class="bg-white">
+  <div class="section-shell py-12">
+    <h2 class="m-0 text-3xl font-bold">Questions worth asking</h2>
+    <ul class="mt-6 grid gap-3 p-0">
+      {questions.map((question) => (
+        <li class="list-none rounded-sm border border-[var(--color-civic-line)] bg-white p-4 text-slate-700">{question}</li>
+      ))}
+    </ul>
+  </div>
+</section>

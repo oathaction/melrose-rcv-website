@@ -1,0 +1,11 @@
+---
+import MainLayout from "../components/layout/MainLayout.astro";
+import HomeRulePathway from "../components/sections/HomeRulePathway.astro";
+import PetitionTimeline from "../components/sections/PetitionTimeline.astro";
+import { getPageMeta } from "../lib/seo";
+---
+
+<MainLayout meta={getPageMeta("/home-rule-petition")}>
+  <HomeRulePathway />
+  <PetitionTimeline />
+</MainLayout>

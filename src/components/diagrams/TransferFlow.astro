@@ -1,0 +1,15 @@
+---
+const steps = ["Voter rankings", "Lowest candidate round", "Next active choice"];
+---
+
+<div class="rounded-sm border border-[var(--color-civic-line)] bg-white p-5" aria-label="Placeholder transfer flow diagram">
+  <p class="m-0 text-sm font-semibold text-[var(--color-civic-blue)]">Transfer flow placeholder</p>
+  <div class="mt-4 flex flex-col gap-3 md:flex-row md:items-center">
+    {steps.map((step, index) => (
+      <>
+        <span class="rounded-sm bg-emerald-50 px-3 py-2 text-sm font-medium text-slate-700">{step}</span>
+        {index < steps.length - 1 && <span class="hidden text-[var(--color-civic-green)] md:inline" aria-hidden="true">-&gt;</span>}
+      </>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,22 @@
+---
+import MainLayout from "../components/layout/MainLayout.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import Alert from "../components/ui/Alert.astro";
+import { CONTACT_EMAIL } from "../lib/constants";
+import { getPageMeta } from "../lib/seo";
+---
+
+<MainLayout meta={getPageMeta("/contact")}>
+  <section class="section-shell py-12">
+    <SectionHeading
+      eyebrow="Contact"
+      title="Contact placeholder"
+      summary="Future contact details and volunteer pathways will be configured here."
+    />
+    <div class="mt-6">
+      <Alert title="Contact setup pending">
+        <p class="m-0">Current placeholder email: <a class="underline underline-offset-4" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
+      </Alert>
+    </div>
+  </section>
+</MainLayout>

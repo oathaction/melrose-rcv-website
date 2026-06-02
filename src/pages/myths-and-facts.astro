@@ -1,0 +1,9 @@
+---
+import MainLayout from "../components/layout/MainLayout.astro";
+import MythsPreview from "../components/sections/MythsPreview.astro";
+import { getPageMeta } from "../lib/seo";
+---
+
+<MainLayout meta={getPageMeta("/myths-and-facts")}>
+  <MythsPreview />
+</MainLayout>

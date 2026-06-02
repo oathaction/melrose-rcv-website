@@ -1,0 +1,32 @@
+---
+import "../../styles/global.css";
+import type { RouteMeta } from "../../types/site";
+import SEO from "./SEO.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import Disclaimer from "../ui/Disclaimer.astro";
+
+interface Props {
+  meta: RouteMeta;
+}
+
+const { meta } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <SEO meta={meta} />
+  </head>
+  <body>
+    <a class="focus-ring sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2" href="#main-content">
+      Skip to main content
+    </a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Disclaimer />
+    <Footer />
+  </body>
+</html>

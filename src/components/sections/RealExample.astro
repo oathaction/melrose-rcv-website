@@ -1,0 +1,23 @@
+---
+import { rcvExamples } from "../../content/data/rcvExamples";
+import Card from "../ui/Card.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section class="bg-white">
+  <div class="section-shell py-12">
+    <SectionHeading
+      eyebrow="Example"
+      title="A simple example will live here"
+      summary="Future content can use a fictional sample election to explain transfers without implying real Melrose results."
+    />
+    <div class="mt-6 grid gap-4">
+      {rcvExamples.map((example) => (
+        <Card tone="blue">
+          <h3 class="m-0 text-xl font-semibold">{example.title}</h3>
+          <p class="mt-2 text-slate-700">{example.summary}</p>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

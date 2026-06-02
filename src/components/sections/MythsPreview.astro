@@ -1,0 +1,23 @@
+---
+import { myths } from "../../content/data/myths";
+import Card from "../ui/Card.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section class="bg-[var(--color-civic-paper)]">
+  <div class="section-shell py-12">
+    <SectionHeading
+      eyebrow="Questions and concerns"
+      title="Myths and facts will be source-grounded"
+      summary="This area reserves space for respectful answers to common concerns."
+    />
+    <div class="mt-6 grid gap-4 md:grid-cols-2">
+      {myths.map((myth) => (
+        <Card>
+          <h3 class="m-0 text-lg font-semibold">{myth.title}</h3>
+          <p class="mt-2 text-sm text-slate-700">{myth.summary}</p>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

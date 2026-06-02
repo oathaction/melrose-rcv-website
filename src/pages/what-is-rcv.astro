@@ -1,0 +1,15 @@
+---
+import MainLayout from "../components/layout/MainLayout.astro";
+import WhatIsRCV from "../components/sections/WhatIsRCV.astro";
+import Alert from "../components/ui/Alert.astro";
+import { getPageMeta } from "../lib/seo";
+---
+
+<MainLayout meta={getPageMeta("/what-is-rcv")}>
+  <WhatIsRCV />
+  <section class="section-shell py-10">
+    <Alert title="Content placeholder">
+      <p class="m-0">This page will become a plain-language introduction after research and source review.</p>
+    </Alert>
+  </section>
+</MainLayout>

@@ -1,0 +1,21 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import RankedBallot from "../diagrams/RankedBallot.astro";
+import CountingRounds from "../diagrams/CountingRounds.astro";
+import TransferFlow from "../diagrams/TransferFlow.astro";
+---
+
+<section class="bg-slate-50">
+  <div class="section-shell py-12">
+    <SectionHeading
+      eyebrow="Counting"
+      title="How an RCV count works"
+      summary="Starter diagrams show the planned explanation structure. They are not final educational content."
+    />
+    <div class="mt-8 grid gap-5 lg:grid-cols-3">
+      <RankedBallot />
+      <CountingRounds />
+      <TransferFlow />
+    </div>
+  </div>
+</section>

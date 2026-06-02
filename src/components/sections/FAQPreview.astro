@@ -1,0 +1,22 @@
+---
+import { faqs } from "../../content/data/faqs";
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section class="bg-white">
+  <div class="section-shell py-12">
+    <SectionHeading
+      eyebrow="FAQ"
+      title="Starter questions"
+      summary="Answers are placeholders until reviewed and sourced."
+    />
+    <div class="mt-6 grid gap-4">
+      {faqs.map((faq) => (
+        <article class="rounded-sm border border-[var(--color-civic-line)] p-5">
+          <h3 class="m-0 text-lg font-semibold">{faq.title}</h3>
+          <p class="mt-2 text-slate-700">{faq.summary}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
