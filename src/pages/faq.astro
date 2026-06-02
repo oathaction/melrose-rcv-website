@@ -1,9 +1,77 @@
 ---
+import { faqs } from "../content/data/faqs";
 import MainLayout from "../components/layout/MainLayout.astro";
-import FAQPreview from "../components/sections/FAQPreview.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import PageCTA from "../components/sections/PageCTA.astro";
+import Alert from "../components/ui/Alert.astro";
+import SourceNote from "../components/ui/SourceNote.astro";
 import { getPageMeta } from "../lib/seo";
+
+const categories = Array.from(new Set(faqs.map((faq) => faq.category ?? "General")));
 ---
 
 <MainLayout meta={getPageMeta("/faq")}>
-  <FAQPreview />
+  <PageHero
+    eyebrow="FAQ"
+    title="Questions Melrose residents are asking"
+    summary="Plain-language answers about RCV basics, ballot marking, home rule petitions, Melrose status, and implementation questions."
+    primaryHref="/contact"
+    primaryLabel="Ask another question"
+    secondaryHref="/sources"
+    secondaryLabel="Check the sources"
+  />
+
+  <section class="section-band bg-white">
+    <div class="section-shell grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <p class="eyebrow">How to read this page</p>
+        <h2 class="mt-2 text-3xl font-black">Answers are separated from open questions</h2>
+        <p class="mt-4 text-lg leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">
+          Some answers are well supported by official RCV education sources. Others are marked as legal-review or implementation placeholders because Melrose-specific decisions have not been made.
+        </p>
+      </div>
+      <div class="grid gap-4">
+        <SourceNote tone="verified" status="FAQ source IDs are included beneath each answer where the answer relies on factual or legal sources." />
+        <Alert title="Current Melrose status" tone="legal">
+          <p class="m-0">Melrose has not adopted RCV, and no timeline for implementation should be promised.</p>
+        </Alert>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band bg-[var(--color-paper)]">
+    <div class="section-shell grid gap-8">
+      {categories.map((category) => (
+        <section aria-labelledby={`faq-${category.toLowerCase().replaceAll(" ", "-")}`}>
+          <h2 id={`faq-${category.toLowerCase().replaceAll(" ", "-")}`} class="text-2xl font-black">{category}</h2>
+          <div class="mt-4 grid gap-3">
+            {faqs.filter((faq) => (faq.category ?? "General") === category).map((faq) => (
+              <details class="group rounded-[var(--radius-3)] border border-[var(--color-line)] bg-white p-5 shadow-[var(--shadow-xs)]">
+                <summary class="focus-ring cursor-pointer list-none text-lg font-black text-[var(--color-ink-strong)] marker:hidden">
+                  <span class="inline-flex w-full items-center justify-between gap-4">
+                    {faq.title}
+                    <span class="text-2xl leading-none text-[var(--color-blue-700)] group-open:rotate-45" aria-hidden="true">+</span>
+                  </span>
+                </summary>
+                <p class="mt-4 leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">{faq.summary}</p>
+                <p class="mt-4 text-xs font-bold uppercase text-[var(--color-blue-900)]">
+                  Status: {faq.reviewStatus.replaceAll("-", " ")}
+                  {faq.sourceIds ? ` | Sources: ${faq.sourceIds.join(", ")}` : ""}
+                </p>
+              </details>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
+
+  <PageCTA
+    title="Still wondering about something?"
+    summary="Questions from residents help improve the site and reveal where legal, municipal, or election-administration review is still needed."
+    primaryHref="/contact"
+    primaryLabel="Ask a question"
+    secondaryHref="/myths-and-facts"
+    secondaryLabel="Read myths and facts"
+  />
 </MainLayout>
