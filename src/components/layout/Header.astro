@@ -3,17 +3,22 @@ import { SITE_NAME } from "../../lib/constants";
 import { navItems } from "../../content/data/nav";
 ---
 
-<header class="border-b border-[var(--color-civic-line)] bg-white">
-  <div class="section-shell flex flex-col gap-4 py-5 lg:flex-row lg:items-center lg:justify-between">
-    <a class="focus-ring inline-flex w-fit items-center gap-3 rounded-sm font-semibold text-[var(--color-civic-ink)] no-underline" href="/">
-      <span class="grid size-10 place-items-center rounded-sm bg-[var(--color-civic-blue)] text-sm font-bold text-white">RCV</span>
-      <span>{SITE_NAME}</span>
+<header class="sticky top-0 z-[var(--z-header)] border-b border-[var(--color-line)] bg-[rgb(255_255_255/0.92)] backdrop-blur" role="banner">
+  <div class="section-shell flex flex-col gap-4 py-4 lg:flex-row lg:items-center lg:justify-between">
+    <a class="focus-ring inline-flex w-fit items-center gap-3 rounded-[var(--radius-2)] text-[var(--color-ink)] no-underline" href="/">
+      <span class="grid size-11 place-items-center rounded-[var(--radius-3)] bg-[var(--color-blue-700)] text-sm font-black text-white shadow-[var(--shadow-xs)]" aria-hidden="true">
+        RCV
+      </span>
+      <span class="grid leading-tight">
+        <span class="font-black">{SITE_NAME}</span>
+        <span class="text-xs font-bold uppercase tracking-normal text-[var(--color-ink-soft)]">Melrose civic education</span>
+      </span>
     </a>
     <nav aria-label="Primary navigation">
-      <ul class="flex flex-wrap gap-x-5 gap-y-2 p-0 text-sm font-medium">
+      <ul class="m-0 flex flex-wrap gap-x-4 gap-y-2 p-0 text-sm font-bold">
         {navItems.map((item) => (
           <li class="list-none">
-            <a class="focus-ring rounded-sm text-[var(--color-civic-ink)] underline-offset-4 hover:text-[var(--color-civic-blue)] hover:underline" href={item.href}>
+            <a class="focus-ring rounded-[var(--radius-1)] px-1 py-1 text-[var(--color-ink)] no-underline underline-offset-4 hover:text-[var(--color-blue-700)] hover:underline" href={item.href}>
               {item.label}
             </a>
           </li>
