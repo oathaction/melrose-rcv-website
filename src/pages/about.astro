@@ -1,21 +1,71 @@
 ---
 import MainLayout from "../components/layout/MainLayout.astro";
-import SectionHeading from "../components/ui/SectionHeading.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import PageCTA from "../components/sections/PageCTA.astro";
 import Alert from "../components/ui/Alert.astro";
+import Card from "../components/ui/Card.astro";
+import SourceNote from "../components/ui/SourceNote.astro";
 import { getPageMeta } from "../lib/seo";
 ---
 
 <MainLayout meta={getPageMeta("/about")}>
-  <section class="section-shell py-12">
-    <SectionHeading
-      eyebrow="About"
-      title="About Melrose RCV"
-      summary="Placeholder page for the civic education and organizing effort."
-    />
-    <div class="mt-6">
-      <Alert title="Organizer information pending">
-        <p class="m-0">Add reviewed organizer, governance, and nonpartisan framing before public launch.</p>
+  <PageHero
+    eyebrow="About"
+    title="A neighbor-to-neighbor civic education effort"
+    summary="Melrose RCV is a nonpartisan effort to help residents understand ranked-choice voting and the home rule petition pathway before any proposal is treated as settled."
+    primaryHref="/contact"
+    primaryLabel="Get involved"
+    secondaryHref="/sources"
+    secondaryLabel="Review sources"
+  />
+
+  <section class="section-band bg-white">
+    <div class="section-shell grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <p class="eyebrow">Mission</p>
+        <h2 class="mt-2 text-3xl font-black">Build understanding before asking for action</h2>
+        <p class="mt-4 text-lg leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">
+          This site exists to explain what RCV is, how it works, why Melrose might consider it, and what a Massachusetts home rule petition would require. It should be useful to supporters, skeptics, local officials, volunteers, and neighbors who are simply curious.
+        </p>
+      </div>
+      <SourceNote tone="verified" status="Mission framing follows the approved strategy and content governance documents for a nonpartisan, source-grounded campaign site." />
+    </div>
+  </section>
+
+  <section class="section-band bg-[var(--color-paper)]">
+    <div class="section-shell grid gap-4 md:grid-cols-3">
+      <Card variant="benefit" tone="green">
+        <h2 class="text-xl font-black">What this effort is</h2>
+        <p class="mt-3 text-sm leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">A civic education and organizing project focused on public understanding, careful source use, and a possible home rule petition.</p>
+      </Card>
+      <Card variant="myth-fact" tone="gold">
+        <h2 class="text-xl font-black">What it is not</h2>
+        <p class="mt-3 text-sm leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">It is not an official City election resource, not legal advice, and not a claim that Melrose has adopted RCV.</p>
+      </Card>
+      <Card variant="source" tone="blue">
+        <h2 class="text-xl font-black">How it should earn trust</h2>
+        <p class="mt-3 text-sm leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">By citing sources, naming uncertainty, respecting skeptical questions, and avoiding partisan or exaggerated claims.</p>
+      </Card>
+    </div>
+  </section>
+
+  <section class="section-band bg-white">
+    <div class="section-shell grid gap-5 md:grid-cols-2">
+      <Alert title="Organizer details pending" tone="caution">
+        <p class="m-0">Founder names, steering committee details, fiscal structure, endorsement policy, and donation compliance information should be added only after review.</p>
+      </Alert>
+      <Alert title="Nonpartisan commitment" tone="legal">
+        <p class="m-0">The site should not suggest RCV is meant to help any party, faction, incumbent, challenger, or candidate.</p>
       </Alert>
     </div>
   </section>
+
+  <PageCTA
+    title="Help make the conversation better"
+    summary="Join updates, volunteer, share a source-backed page, or send a question that should be answered more clearly."
+    primaryHref="/contact"
+    primaryLabel="Contact Melrose RCV"
+    secondaryHref="/faq"
+    secondaryLabel="Read the FAQ"
+  />
 </MainLayout>
