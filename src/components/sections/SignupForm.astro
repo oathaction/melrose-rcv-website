@@ -16,7 +16,7 @@ import Button from "../ui/Button.astro";
         Email
         <input class="rounded-sm border border-slate-300 px-3 py-2 font-normal" type="email" name="email" placeholder="name@example.com" disabled={!hasSignupEndpoint()} />
       </label>
-      <Button>Notify me</Button>
+      <Button type="submit">Notify me</Button>
       {!hasSignupEndpoint() && (
         <p class="m-0 text-sm text-slate-600">Signup endpoint placeholder. Configure `PUBLIC_SIGNUP_FORM_ENDPOINT` before launch.</p>
       )}
