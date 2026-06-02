@@ -1,21 +1,83 @@
 ---
 import MainLayout from "../components/layout/MainLayout.astro";
-import SectionHeading from "../components/ui/SectionHeading.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import PageCTA from "../components/sections/PageCTA.astro";
 import Alert from "../components/ui/Alert.astro";
+import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
 import { getPageMeta } from "../lib/seo";
+
+const supportOptions = [
+  "Join the email list and follow updates.",
+  "Share a sourced page with a neighbor.",
+  "Volunteer for research, outreach, accessibility, or event support.",
+  "Ask a skeptical question that should be answered publicly.",
+];
 ---
 
 <MainLayout meta={getPageMeta("/donate")}>
-  <section class="section-shell py-12">
-    <SectionHeading
-      eyebrow="Donate"
-      title="Donation setup placeholder"
-      summary="Donation language, compliance requirements, and payment tooling need review before launch."
-    />
-    <div class="mt-6">
-      <Alert title="Compliance placeholder">
-        <p class="m-0">Do not activate donations until the organizing structure and legal requirements are reviewed.</p>
+  <PageHero
+    eyebrow="Support"
+    title="Support the civic education work"
+    summary="Melrose RCV may need help with voter education materials, outreach, events, accessibility, and legal or election-administration review. Donation tooling is not active until compliance details are verified."
+    primaryHref="/contact"
+    primaryLabel="Offer to help"
+    secondaryHref="/sources"
+    secondaryLabel="Review sources"
+    status="Do not treat this page as a live fundraising page until organizing structure, compliance requirements, payment processing, and disclosure language are reviewed."
+  />
+
+  <section class="section-band bg-white">
+    <div class="section-shell grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+      <div>
+        <p class="eyebrow">Donation status</p>
+        <h2 class="mt-2 text-3xl font-black">Payment setup is intentionally paused</h2>
+        <p class="mt-4 text-lg leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">
+          Before accepting money, the effort needs clear answers about fiscal structure, contribution rules, reporting, disclaimers, privacy, refunds, and whether any campaign-finance requirements apply.
+        </p>
+        <div class="mt-6">
+          <Button href="/contact" variant="support">Contact about support</Button>
+        </div>
+      </div>
+      <Alert title="Compliance caution" tone="legal">
+        <p class="m-0">No donation, sponsorship, political committee, tax, or campaign-finance claim should be published until reviewed by appropriate counsel or compliance support.</p>
       </Alert>
     </div>
   </section>
+
+  <section class="section-band bg-[var(--color-paper)]">
+    <div class="section-shell">
+      <h2 class="text-3xl font-black">Ways to support without donating</h2>
+      <div class="mt-8 grid gap-4 md:grid-cols-4">
+        {supportOptions.map((option, index) => (
+          <Card variant="benefit" tone={index % 2 === 0 ? "green" : "plain"} class="h-full">
+            <p class="m-0 text-3xl font-black text-[var(--color-green-700)]">{index + 1}</p>
+            <p class="mt-3 text-sm font-bold leading-[var(--leading-normal)] text-[var(--color-ink)]">{option}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band bg-white">
+    <div class="section-shell grid gap-4 md:grid-cols-2">
+      <Card variant="source" tone="gold">
+        <h2 class="text-xl font-black">Potential future costs</h2>
+        <p class="mt-3 text-sm leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">A serious campaign may need funds for printing, events, accessibility, translation, legal review, compliance, and web services. No Melrose implementation cost estimate has been verified.</p>
+      </Card>
+      <Card variant="myth-fact" tone="lilac">
+        <h2 class="text-xl font-black">Claims to avoid</h2>
+        <p class="mt-3 text-sm leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">Do not claim donations are tax deductible, legally compliant, or used for a specific regulated purpose unless those details are confirmed.</p>
+      </Card>
+    </div>
+  </section>
+
+  <PageCTA
+    title="Support can start with a conversation"
+    summary="Until donation compliance is ready, the best next step is to join updates, volunteer, or share a careful question."
+    primaryHref="/contact"
+    primaryLabel="Volunteer or ask a question"
+    secondaryHref="/faq"
+    secondaryLabel="Read the FAQ"
+  />
 </MainLayout>
