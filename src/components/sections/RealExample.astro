@@ -1,23 +1,35 @@
 ---
-import { rcvExamples } from "../../content/data/rcvExamples";
-import Card from "../ui/Card.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
+
+const choices = [
+  { rank: "1st", idea: "Park cleanup", detail: "Your favorite neighborhood project" },
+  { rank: "2nd", idea: "Library forum", detail: "Your backup if the cleanup is eliminated" },
+  { rank: "3rd", idea: "Main Street walk", detail: "Another acceptable option" },
+];
 ---
 
-<section class="bg-white">
-  <div class="section-shell py-12">
+<section id="example" class="section-band bg-white">
+  <div class="section-shell grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
     <SectionHeading
-      eyebrow="Example"
-      title="A simple example will live here"
-      summary="Future content can use a fictional sample election to explain transfers without implying real Melrose results."
+      eyebrow="Melrose-themed example"
+      title="Imagine ranking ideas for a neighborhood project"
+      summary="A fictional example can make the mechanics feel less abstract without implying real Melrose election results or official ballot instructions."
     />
-    <div class="mt-6 grid gap-4">
-      {rcvExamples.map((example) => (
-        <Card tone="blue">
-          <h3 class="m-0 text-xl font-semibold">{example.title}</h3>
-          <p class="mt-2 text-slate-700">{example.summary}</p>
-        </Card>
-      ))}
+    <div class="rounded-[var(--radius-4)] border border-[var(--color-line)] bg-[var(--color-paper)] p-5 shadow-[var(--shadow-xs)]">
+      <ol class="m-0 grid gap-3 p-0">
+        {choices.map((choice) => (
+          <li class="grid grid-cols-[4rem_1fr] gap-3 rounded-[var(--radius-3)] border border-[var(--color-line)] bg-white p-4">
+            <span class="rounded-[var(--radius-2)] bg-[var(--color-green-700)] px-3 py-2 text-center text-sm font-black text-white">{choice.rank}</span>
+            <span>
+              <strong class="block text-[var(--color-ink)]">{choice.idea}</strong>
+              <span class="text-sm text-[var(--color-ink-soft)]">{choice.detail}</span>
+            </span>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-5 rounded-[var(--radius-3)] border border-[var(--color-gold-100)] bg-[var(--color-gold-50)] p-4 text-sm leading-[var(--leading-normal)] text-[var(--color-gold-900)]">
+        If no idea reaches the threshold at first, the lowest idea is eliminated and those ballots move to each voter's next ranked continuing idea. Source IDs: `mit-irv`, `ncsl-rcv`, `center-civic-design-rcv`.
+      </div>
     </div>
   </div>
 </section>

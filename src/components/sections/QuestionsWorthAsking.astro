@@ -1,17 +1,29 @@
 ---
 const questions = [
-  "What would need to change in local election administration?",
-  "What legal review is required before petition language is final?",
-  "What information would residents need before deciding whether to support RCV?",
+  "Which offices would a proposal cover?",
+  "Would single-seat and multi-seat offices need different methods?",
+  "What voting equipment, software, staffing, and training would be needed?",
+  "How would results, audits, recounts, and certification work?",
+  "What would implementation cost?",
+  "What information would skeptical residents need before deciding?",
 ];
 ---
 
-<section class="bg-white">
-  <div class="section-shell py-12">
-    <h2 class="m-0 text-3xl font-bold">Questions worth asking</h2>
-    <ul class="mt-6 grid gap-3 p-0">
-      {questions.map((question) => (
-        <li class="list-none rounded-sm border border-[var(--color-civic-line)] bg-white p-4 text-slate-700">{question}</li>
+<section id="questions" class="section-band bg-white">
+  <div class="section-shell grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+    <div>
+      <p class="eyebrow">Questions worth asking</p>
+      <h2 class="mt-2 text-[clamp(1.8rem,4vw,2.75rem)] font-black">A trustworthy campaign makes room for hard questions</h2>
+      <p class="mt-4 text-lg text-[var(--color-ink-soft)]">
+        Support for RCV should grow from clear answers, not pressure. These questions need public discussion and official review.
+      </p>
+    </div>
+    <ul class="m-0 grid gap-3 p-0 md:grid-cols-2">
+      {questions.map((question, index) => (
+        <li class="list-none rounded-[var(--radius-3)] border border-[var(--color-line)] bg-[var(--color-paper)] p-4">
+          <span class="text-xs font-black uppercase text-[var(--color-gold-700)]">Open question {index + 1}</span>
+          <p class="mt-2 text-sm font-bold leading-[var(--leading-normal)] text-[var(--color-ink)]">{question}</p>
+        </li>
       ))}
     </ul>
   </div>

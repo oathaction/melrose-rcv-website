@@ -1,16 +1,28 @@
 ---
+import Alert from "../ui/Alert.astro";
 import Button from "../ui/Button.astro";
 ---
 
-<section class="bg-[var(--color-civic-blue)] text-white">
-  <div class="section-shell py-12">
-    <h2 class="m-0 max-w-3xl text-3xl font-bold">Ready for the next phase</h2>
-    <p class="mt-4 max-w-3xl text-blue-50">
-      The scaffold is ready for research, review, and resident-facing content development.
-    </p>
-    <div class="mt-6 flex flex-wrap gap-3">
-      <Button href="/sources" variant="secondary">Review source placeholders</Button>
-      <Button href="/contact">Contact placeholder</Button>
+<section class="section-band bg-[var(--color-paper)]">
+  <div class="section-shell rounded-[var(--radius-4)] border border-[var(--color-line)] bg-white p-6 shadow-[var(--shadow-sm)] md:p-8">
+    <div class="grid gap-7 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+      <div>
+        <p class="eyebrow">Next step</p>
+        <h2 class="mt-2 text-[clamp(2rem,4vw,3.25rem)] font-black">Melrose deserves a careful, transparent conversation</h2>
+        <p class="mt-4 max-w-3xl text-lg text-[var(--color-ink-soft)]">
+          Start with the FAQ, ask a question, or join the list. The campaign can be supportive and still be honest about legal review, implementation details, and open questions.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <Button href="/faq">Read the FAQ</Button>
+          <Button href="/contact" variant="secondary">Ask a Question</Button>
+          <Button href="/donate" variant="donation">Donate / Support</Button>
+        </div>
+      </div>
+      <Alert title="Donation and compliance caution" tone="caution">
+        <p class="m-0">
+          Donation details, contribution rules, tax treatment, payment processing, privacy, and required disclaimers need review before a live donation flow launches.
+        </p>
+      </Alert>
     </div>
   </div>
 </section>

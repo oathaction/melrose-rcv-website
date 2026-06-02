@@ -1,23 +1,30 @@
 ---
 import { whereUsed } from "../../content/data/whereUsed";
 import Card from "../ui/Card.astro";
+import Button from "../ui/Button.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 ---
 
-<section class="bg-white">
-  <div class="section-shell py-12">
+<section id="where-used" class="section-band bg-white">
+  <div class="section-shell">
     <SectionHeading
       eyebrow="Context"
       title="Where RCV is used"
-      summary="Future content should include only verified examples from reviewed sources."
+      summary="RCV is used in different forms in different places. These examples help residents learn, but they do not settle Melrose's legal path."
     />
-    <div class="mt-6 grid gap-4 md:grid-cols-2">
+    <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {whereUsed.map((item) => (
-        <Card tone="green">
-          <h3 class="m-0 text-lg font-semibold">{item.title}</h3>
-          <p class="mt-2 text-sm text-slate-700">{item.summary}</p>
+        <Card tone="green" variant="source" class="h-full">
+          <h3 class="m-0 text-lg font-black">{item.title}</h3>
+          <p class="mt-3 text-sm leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">{item.summary}</p>
+          {item.sourceIds && (
+            <p class="mt-4 text-xs font-bold uppercase text-[var(--color-green-900)]">Sources: {item.sourceIds.join(", ")}</p>
+          )}
         </Card>
       ))}
+    </div>
+    <div class="mt-7">
+      <Button href="/sources" variant="secondary">Check the source log</Button>
     </div>
   </div>
 </section>
