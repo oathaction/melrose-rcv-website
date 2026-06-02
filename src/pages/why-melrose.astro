@@ -1,0 +1,13 @@
+---
+import MainLayout from "../components/layout/MainLayout.astro";
+import Benefits from "../components/sections/Benefits.astro";
+import MelroseContext from "../components/sections/MelroseContext.astro";
+import QuestionsWorthAsking from "../components/sections/QuestionsWorthAsking.astro";
+import { getPageMeta } from "../lib/seo";
+---
+
+<MainLayout meta={getPageMeta("/why-melrose")}>
+  <MelroseContext />
+  <Benefits />
+  <QuestionsWorthAsking />
+</MainLayout>

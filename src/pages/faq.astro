@@ -1,0 +1,9 @@
+---
+import MainLayout from "../components/layout/MainLayout.astro";
+import FAQPreview from "../components/sections/FAQPreview.astro";
+import { getPageMeta } from "../lib/seo";
+---
+
+<MainLayout meta={getPageMeta("/faq")}>
+  <FAQPreview />
+</MainLayout>

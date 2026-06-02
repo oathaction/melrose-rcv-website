@@ -1,0 +1,27 @@
+---
+import MainLayout from "../components/layout/MainLayout.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import SourceNote from "../components/ui/SourceNote.astro";
+import { citationStandards } from "../lib/citations";
+import { sources } from "../content/data/sources";
+import { getPageMeta } from "../lib/seo";
+---
+
+<MainLayout meta={getPageMeta("/sources")}>
+  <section class="section-shell py-12">
+    <SectionHeading
+      eyebrow="Sources"
+      title="Source log"
+      summary="No substantive citations have been added yet. This page documents standards and future source entries."
+    />
+    <div class="mt-6">
+      <SourceNote status="Source entries are intentionally empty until research is complete." />
+    </div>
+    <ul class="mt-6 grid gap-3 p-0">
+      {citationStandards.map((standard) => (
+        <li class="list-none rounded-sm border border-[var(--color-civic-line)] bg-white p-4">{standard}</li>
+      ))}
+    </ul>
+    <p class="mt-6 text-sm text-slate-700">Current source count: {sources.length}</p>
+  </section>
+</MainLayout>

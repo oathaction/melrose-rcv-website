@@ -1,0 +1,11 @@
+---
+import MainLayout from "../components/layout/MainLayout.astro";
+import HowRCVWorks from "../components/sections/HowRCVWorks.astro";
+import RealExample from "../components/sections/RealExample.astro";
+import { getPageMeta } from "../lib/seo";
+---
+
+<MainLayout meta={getPageMeta("/how-it-works")}>
+  <HowRCVWorks />
+  <RealExample />
+</MainLayout>

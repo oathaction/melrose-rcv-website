@@ -1,0 +1,35 @@
+---
+import MainLayout from "../components/layout/MainLayout.astro";
+import Benefits from "../components/sections/Benefits.astro";
+import FAQPreview from "../components/sections/FAQPreview.astro";
+import FinalCTA from "../components/sections/FinalCTA.astro";
+import Hero from "../components/sections/Hero.astro";
+import HomeRulePathway from "../components/sections/HomeRulePathway.astro";
+import HowRCVWorks from "../components/sections/HowRCVWorks.astro";
+import MelroseContext from "../components/sections/MelroseContext.astro";
+import MythsPreview from "../components/sections/MythsPreview.astro";
+import PetitionTimeline from "../components/sections/PetitionTimeline.astro";
+import QuestionsWorthAsking from "../components/sections/QuestionsWorthAsking.astro";
+import RealExample from "../components/sections/RealExample.astro";
+import SignupForm from "../components/sections/SignupForm.astro";
+import WhatIsRCV from "../components/sections/WhatIsRCV.astro";
+import WhereUsed from "../components/sections/WhereUsed.astro";
+import { getPageMeta } from "../lib/seo";
+---
+
+<MainLayout meta={getPageMeta("/")}>
+  <Hero />
+  <SignupForm />
+  <WhatIsRCV />
+  <HowRCVWorks />
+  <RealExample />
+  <Benefits />
+  <HomeRulePathway />
+  <PetitionTimeline />
+  <QuestionsWorthAsking />
+  <MythsPreview />
+  <WhereUsed />
+  <MelroseContext />
+  <FAQPreview />
+  <FinalCTA />
+</MainLayout>

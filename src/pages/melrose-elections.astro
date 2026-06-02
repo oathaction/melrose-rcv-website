@@ -1,0 +1,13 @@
+---
+import MainLayout from "../components/layout/MainLayout.astro";
+import MelroseContext from "../components/sections/MelroseContext.astro";
+import SourceNote from "../components/ui/SourceNote.astro";
+import { getPageMeta } from "../lib/seo";
+---
+
+<MainLayout meta={getPageMeta("/melrose-elections")}>
+  <MelroseContext />
+  <section class="section-shell py-10">
+    <SourceNote status="Melrose election facts will be added only after official source review." />
+  </section>
+</MainLayout>

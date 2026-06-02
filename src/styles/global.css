@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./utilities.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-civic-paper);
+  color: var(--color-civic-ink);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-civic-gold);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgb(30 91 143 / 0.2);
+}

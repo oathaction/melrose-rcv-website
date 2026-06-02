@@ -1,0 +1,21 @@
+---
+import MainLayout from "../components/layout/MainLayout.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import Alert from "../components/ui/Alert.astro";
+import { getPageMeta } from "../lib/seo";
+---
+
+<MainLayout meta={getPageMeta("/about")}>
+  <section class="section-shell py-12">
+    <SectionHeading
+      eyebrow="About"
+      title="About Melrose RCV"
+      summary="Placeholder page for the civic education and organizing effort."
+    />
+    <div class="mt-6">
+      <Alert title="Organizer information pending">
+        <p class="m-0">Add reviewed organizer, governance, and nonpartisan framing before public launch.</p>
+      </Alert>
+    </div>
+  </section>
+</MainLayout>

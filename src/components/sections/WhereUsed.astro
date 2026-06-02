@@ -1,0 +1,23 @@
+---
+import { whereUsed } from "../../content/data/whereUsed";
+import Card from "../ui/Card.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section class="bg-white">
+  <div class="section-shell py-12">
+    <SectionHeading
+      eyebrow="Context"
+      title="Where RCV is used"
+      summary="Future content should include only verified examples from reviewed sources."
+    />
+    <div class="mt-6 grid gap-4 md:grid-cols-2">
+      {whereUsed.map((item) => (
+        <Card tone="green">
+          <h3 class="m-0 text-lg font-semibold">{item.title}</h3>
+          <p class="mt-2 text-sm text-slate-700">{item.summary}</p>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

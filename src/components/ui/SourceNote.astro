@@ -1,0 +1,11 @@
+---
+interface Props {
+  status?: string;
+}
+
+const { status = "Source review pending" } = Astro.props;
+---
+
+<p class="m-0 rounded-sm border border-dashed border-[var(--color-civic-gold)] bg-amber-50 p-3 text-sm text-slate-800">
+  <strong>Source note:</strong> {status}
+</p>

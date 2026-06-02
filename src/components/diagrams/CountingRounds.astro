@@ -1,0 +1,12 @@
+---
+const rounds = ["Count first choices", "Check for majority", "Transfer next rankings"];
+---
+
+<div class="rounded-sm border border-[var(--color-civic-line)] bg-white p-5" aria-label="Placeholder counting rounds diagram">
+  <p class="m-0 text-sm font-semibold text-[var(--color-civic-blue)]">Counting rounds placeholder</p>
+  <ol class="mt-4 grid gap-3 p-0">
+    {rounds.map((round) => (
+      <li class="list-none rounded-sm bg-slate-50 p-3 text-sm text-slate-700">{round}</li>
+    ))}
+  </ol>
+</div>

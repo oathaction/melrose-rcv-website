@@ -1,0 +1,16 @@
+---
+interface Props {
+  tone?: "plain" | "blue" | "green";
+}
+
+const { tone = "plain" } = Astro.props;
+const toneClass = {
+  plain: "bg-white",
+  blue: "bg-blue-50",
+  green: "bg-emerald-50",
+}[tone];
+---
+
+<article class:list={["rounded-sm border border-[var(--color-civic-line)] p-5 shadow-sm", toneClass]}>
+  <slot />
+</article>

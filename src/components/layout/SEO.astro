@@ -1,0 +1,23 @@
+---
+import { SITE_NAME } from "../../lib/constants";
+import type { RouteMeta } from "../../types/site";
+
+interface Props {
+  meta: RouteMeta;
+}
+
+const { meta } = Astro.props;
+const title = meta.title === SITE_NAME ? SITE_NAME : `${meta.title} | ${SITE_NAME}`;
+const canonical = new URL(meta.path, Astro.site ?? "https://melrosercv.org").toString();
+---
+
+<title>{title}</title>
+<meta name="description" content={meta.description} />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="canonical" href={canonical} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={meta.description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
+<meta name="twitter:card" content="summary" />

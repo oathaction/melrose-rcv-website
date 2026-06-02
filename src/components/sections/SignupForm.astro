@@ -1,0 +1,25 @@
+---
+import { hasSignupEndpoint, signupFormConfig } from "../../lib/forms";
+import Button from "../ui/Button.astro";
+---
+
+<section class="bg-white">
+  <div class="section-shell grid gap-6 py-10 md:grid-cols-[1fr_1fr] md:items-start">
+    <div>
+      <h2 class="m-0 text-2xl font-bold">Stay in the loop</h2>
+      <p class="mt-3 text-slate-700">
+        Placeholder signup area for future volunteer and community updates.
+      </p>
+    </div>
+    <form class="grid gap-3 rounded-sm border border-[var(--color-civic-line)] p-5" action={signupFormConfig.endpoint || "#"} method={signupFormConfig.method}>
+      <label class="grid gap-2 text-sm font-semibold">
+        Email
+        <input class="rounded-sm border border-slate-300 px-3 py-2 font-normal" type="email" name="email" placeholder="name@example.com" disabled={!hasSignupEndpoint()} />
+      </label>
+      <Button>Notify me</Button>
+      {!hasSignupEndpoint() && (
+        <p class="m-0 text-sm text-slate-600">Signup endpoint placeholder. Configure `PUBLIC_SIGNUP_FORM_ENDPOINT` before launch.</p>
+      )}
+    </form>
+  </div>
+</section>

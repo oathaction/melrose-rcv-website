@@ -1,0 +1,21 @@
+---
+import MainLayout from "../components/layout/MainLayout.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import Alert from "../components/ui/Alert.astro";
+import { getPageMeta } from "../lib/seo";
+---
+
+<MainLayout meta={getPageMeta("/donate")}>
+  <section class="section-shell py-12">
+    <SectionHeading
+      eyebrow="Donate"
+      title="Donation setup placeholder"
+      summary="Donation language, compliance requirements, and payment tooling need review before launch."
+    />
+    <div class="mt-6">
+      <Alert title="Compliance placeholder">
+        <p class="m-0">Do not activate donations until the organizing structure and legal requirements are reviewed.</p>
+      </Alert>
+    </div>
+  </section>
+</MainLayout>
