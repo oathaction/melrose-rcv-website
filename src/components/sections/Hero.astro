@@ -3,27 +3,48 @@ import Button from "../ui/Button.astro";
 import Badge from "../ui/Badge.astro";
 ---
 
-<section class="bg-[var(--color-civic-paper)]">
-  <div class="section-shell grid gap-8 py-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-    <div>
-      <Badge label="Nonpartisan civic education" />
-      <h1 class="mt-5 max-w-4xl text-4xl font-bold leading-tight text-[var(--color-civic-ink)] md:text-5xl">
+<section class="relative overflow-hidden bg-[var(--color-paper)]">
+  <div class="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,var(--color-blue-50),transparent)]" aria-hidden="true"></div>
+  <div class="section-shell-wide relative grid gap-10 py-14 md:py-18 lg:grid-cols-[1.06fr_0.94fr] lg:items-center lg:py-20">
+    <div class="max-w-4xl">
+      <Badge label="Nonpartisan civic education" tone="green" />
+      <h1 class="mt-5 text-[clamp(2.5rem,7vw,5.85rem)] font-black leading-[0.98] text-[var(--color-ink-strong)]">
         Melrose RCV
       </h1>
-      <p class="mt-5 max-w-2xl text-xl text-slate-700">
-        A starter website scaffold for learning about ranked-choice voting and the Massachusetts home rule petition pathway.
+      <p class="mt-6 max-w-3xl text-xl leading-[var(--leading-snug)] text-[var(--color-ink)] md:text-2xl">
+        A neighbor-to-neighbor effort to build public understanding and support for bringing ranked-choice voting to Melrose municipal elections through a Massachusetts home rule petition.
       </p>
-      <div class="mt-7 flex flex-wrap gap-3">
-        <Button href="/what-is-rcv">Start learning</Button>
-        <Button href="/home-rule-petition" variant="secondary">Review the pathway</Button>
+      <p class="mt-5 max-w-2xl text-base leading-[var(--leading-normal)] text-[var(--color-ink-soft)] md:text-lg">
+        Learn what RCV is, how it works, why supporters think Melrose should consider it, and what legal and election-administration questions still need review.
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <Button href="#how-it-works" size="lg">Learn How RCV Works</Button>
+        <Button href="#home-rule" variant="support" size="lg">Support the Home Rule Petition</Button>
+        <Button href="#join" variant="secondary" size="lg">Join the Melrose RCV List</Button>
       </div>
-    </div>
-    <div class="rounded-sm border border-[var(--color-civic-line)] bg-white p-6 shadow-sm">
-      <p class="m-0 text-sm font-semibold uppercase tracking-normal text-[var(--color-civic-green)]">Scaffold status</p>
-      <p class="mt-3 text-2xl font-bold">Placeholder content only</p>
-      <p class="mt-3 text-slate-700">
-        Future work should add verified sources, reviewed legal language, polished diagrams, and final resident-facing copy.
+      <p class="mt-4 max-w-2xl text-sm font-semibold text-[var(--color-ink-soft)]">
+        Status: Melrose has not adopted RCV. A proposal would need legal review, civic action, and likely state authorization.
       </p>
+    </div>
+
+    <div class="relative">
+      <div class="rounded-[var(--radius-4)] border border-[var(--color-line)] bg-white p-5 shadow-[var(--shadow-sm)]">
+        <p class="eyebrow">How a ranked ballot feels</p>
+        <div class="mt-4 grid gap-3" aria-label="Fictional ranked ballot preview">
+          {["Park cleanup", "Library forum", "Main Street walk"].map((choice, index) => (
+            <div class="grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-[var(--radius-3)] border border-[var(--color-line)] bg-[var(--color-paper)] p-4">
+              <span class="grid size-10 place-items-center rounded-[var(--radius-2)] bg-[var(--color-blue-700)] text-sm font-black text-white">
+                {index + 1}
+              </span>
+              <span class="font-black text-[var(--color-ink)]">{choice}</span>
+              <span class="text-xs font-bold uppercase text-[var(--color-green-900)]">choice</span>
+            </div>
+          ))}
+        </div>
+        <div class="mt-5 rounded-[var(--radius-3)] border border-[var(--color-gold-100)] bg-[var(--color-gold-50)] p-4 text-sm leading-[var(--leading-normal)] text-[var(--color-gold-900)]">
+          Fictional example only. Final Melrose ballot instructions would require election-administration review.
+        </div>
+      </div>
     </div>
   </div>
 </section>
