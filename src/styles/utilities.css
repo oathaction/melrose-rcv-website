@@ -1,6 +1,28 @@
 .section-shell {
-  width: min(1120px, calc(100% - 2rem));
+  width: min(var(--container-lg), calc(100% - (var(--container-padding) * 2)));
   margin-inline: auto;
+}
+
+.section-shell-wide {
+  width: min(var(--container-xl), calc(100% - (var(--container-padding) * 2)));
+  margin-inline: auto;
+}
+
+.prose-shell {
+  width: min(var(--container-sm), calc(100% - (var(--container-padding) * 2)));
+  margin-inline: auto;
+}
+
+.section-band {
+  padding-block: clamp(var(--space-12), 7vw, var(--space-20));
+}
+
+.surface-grid {
+  background-color: var(--color-surface);
+  background-image:
+    linear-gradient(rgb(27 36 48 / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(27 36 48 / 0.045) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 .focus-ring {
@@ -9,5 +31,31 @@
 }
 
 .focus-ring:focus-visible {
-  outline-color: var(--color-civic-gold);
+  outline-color: var(--color-focus);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.muted-copy {
+  color: var(--color-ink-soft);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--color-green-700);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-gold-500);
+  box-shadow: 0 0 0 4px rgb(200 145 45 / 0.18);
 }
