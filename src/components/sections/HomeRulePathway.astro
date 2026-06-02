@@ -1,29 +1,40 @@
 ---
 import { homeRuleSteps } from "../../content/data/homeRuleSteps";
 import Alert from "../ui/Alert.astro";
+import Button from "../ui/Button.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 ---
 
-<section class="bg-white">
-  <div class="section-shell py-12">
+<section id="home-rule" class="section-band bg-white">
+  <div class="section-shell">
     <SectionHeading
-      eyebrow="Civic pathway"
-      title="Massachusetts home rule petition pathway"
-      summary="This placeholder section keeps the pathway visible while making clear that final language and process details need review."
+      eyebrow="Home rule petition"
+      title="The practical path would run through local and state review"
+      summary="A Melrose proposal would likely need state authorization because Massachusetts municipalities do not have broad local power to regulate elections. Local approval would not make implementation automatic."
     />
-    <div class="mt-8 grid gap-4 md:grid-cols-2">
-      {homeRuleSteps.map((step) => (
-        <article class="rounded-sm border border-[var(--color-civic-line)] p-5">
-          <p class="m-0 text-sm font-semibold uppercase tracking-normal text-[var(--color-civic-green)]">{step.status}</p>
-          <h3 class="mt-2 text-xl font-semibold">{step.label}</h3>
-          <p class="mt-2 text-slate-700">{step.summary}</p>
+    <div class="mt-8 grid gap-4 lg:grid-cols-3">
+      {homeRuleSteps.slice(0, 6).map((step, index) => (
+        <article class="rounded-[var(--radius-4)] border border-[var(--color-line)] bg-[var(--color-paper)] p-5 shadow-[var(--shadow-xs)]">
+          <p class="m-0 flex items-center gap-2 text-xs font-black uppercase text-[var(--color-lilac-800)]">
+            <span class="grid size-7 place-items-center rounded-[var(--radius-pill)] bg-[var(--color-lilac-100)]">{index + 1}</span>
+            {step.status.replaceAll("-", " ")}
+          </p>
+          <h3 class="mt-4 text-xl font-black">{step.label}</h3>
+          <p class="mt-3 text-sm leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">{step.summary}</p>
+          {step.sourceIds && (
+            <p class="mt-4 text-xs font-bold uppercase text-[var(--color-lilac-800)]">Sources: {step.sourceIds.join(", ")}</p>
+          )}
         </article>
       ))}
     </div>
     <div class="mt-6">
-      <Alert title="Legal review placeholder">
-        <p class="m-0">Final petition language, implementation details, and election-administration timelines require review by appropriate authorities.</p>
+      <Alert title="Legal review required" tone="legal">
+        <p class="m-0">Final petition language, local procedure, state legislative strategy, ballot design, tabulation, audits, recounts, voter education, and timing require review by appropriate legal, municipal, and election-administration authorities.</p>
       </Alert>
+    </div>
+    <div class="mt-7 flex flex-wrap gap-3">
+      <Button href="/home-rule-petition" variant="support">Support the Home Rule Petition</Button>
+      <Button href="/sources" variant="secondary">Review the sources</Button>
     </div>
   </div>
 </section>
