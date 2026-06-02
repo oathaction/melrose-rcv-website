@@ -1,23 +1,31 @@
 ---
 import { myths } from "../../content/data/myths";
 import Card from "../ui/Card.astro";
+import Button from "../ui/Button.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
+
+const previewMyths = myths.slice(0, 4);
 ---
 
-<section class="bg-[var(--color-civic-paper)]">
-  <div class="section-shell py-12">
+<section id="myths" class="section-band bg-[var(--color-paper)]">
+  <div class="section-shell">
     <SectionHeading
       eyebrow="Questions and concerns"
-      title="Myths and facts will be source-grounded"
-      summary="This area reserves space for respectful answers to common concerns."
+      title="Respectful answers build trust"
+      summary="Some claims are misconceptions. Some are valid implementation concerns. The site should tell the difference."
     />
-    <div class="mt-6 grid gap-4 md:grid-cols-2">
-      {myths.map((myth) => (
-        <Card>
-          <h3 class="m-0 text-lg font-semibold">{myth.title}</h3>
-          <p class="mt-2 text-sm text-slate-700">{myth.summary}</p>
+    <div class="mt-8 grid gap-4 md:grid-cols-2">
+      {previewMyths.map((myth) => (
+        <Card variant="myth-fact" tone="plain" class="h-full">
+          <p class="m-0 text-xs font-black uppercase text-[var(--color-lilac-800)]">{myth.category}</p>
+          <h3 class="mt-2 text-xl font-black">{myth.title}</h3>
+          <p class="mt-3 text-sm leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">{myth.summary}</p>
         </Card>
       ))}
+    </div>
+    <div class="mt-7 flex flex-wrap gap-3">
+      <Button href="/myths-and-facts" variant="secondary">Read myths and facts</Button>
+      <Button href="/faq" variant="ghost">Read the FAQ</Button>
     </div>
   </div>
 </section>
