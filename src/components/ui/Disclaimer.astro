@@ -2,8 +2,9 @@
 import { DISCLAIMER_TEXT } from "../../lib/constants";
 ---
 
-<aside class="border-y border-[var(--color-civic-line)] bg-[#fff8e6]" aria-label="Civic and legal disclaimer">
-  <div class="section-shell py-4">
-    <p class="m-0 text-sm font-medium text-slate-800">{DISCLAIMER_TEXT}</p>
+<aside class="border-y border-[var(--color-gold-100)] bg-[var(--color-gold-50)]" aria-label="Civic and legal disclaimer">
+  <div class="section-shell flex flex-col gap-3 py-4 text-[var(--color-gold-900)] sm:flex-row sm:items-start">
+    <span class="status-dot mt-2 shrink-0" aria-hidden="true"></span>
+    <p class="m-0 text-sm font-semibold leading-[var(--leading-normal)]">{DISCLAIMER_TEXT}</p>
   </div>
 </aside>

@@ -1,11 +1,19 @@
 ---
 interface Props {
   status?: string;
+  tone?: "pending" | "verified" | "legal" | "caution";
 }
 
-const { status = "Source review pending" } = Astro.props;
+const { status = "Source review pending", tone = "pending" } = Astro.props;
+
+const toneClass = {
+  pending: "border-[var(--color-gold-100)] bg-[var(--color-gold-50)] text-[var(--color-gold-900)]",
+  verified: "border-[var(--color-green-100)] bg-[var(--color-green-50)] text-[var(--color-green-900)]",
+  legal: "border-[var(--color-lilac-100)] bg-[var(--color-lilac-50)] text-[var(--color-lilac-800)]",
+  caution: "border-[var(--color-rust-100)] bg-[var(--color-rust-50)] text-[var(--color-rust-800)]",
+}[tone];
 ---
 
-<p class="m-0 rounded-sm border border-dashed border-[var(--color-civic-gold)] bg-amber-50 p-3 text-sm text-slate-800">
+<p class:list={["m-0 rounded-[var(--radius-2)] border p-3 text-sm leading-[var(--leading-normal)]", toneClass]}>
   <strong>Source note:</strong> {status}
 </p>

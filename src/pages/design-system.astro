@@ -1,0 +1,85 @@
+---
+import Alert from "../components/ui/Alert.astro";
+import Badge from "../components/ui/Badge.astro";
+import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import SourceNote from "../components/ui/SourceNote.astro";
+import RankedBallot from "../components/diagrams/RankedBallot.astro";
+import CountingRounds from "../components/diagrams/CountingRounds.astro";
+import TransferFlow from "../components/diagrams/TransferFlow.astro";
+import MainLayout from "../components/layout/MainLayout.astro";
+
+const meta = {
+  title: "Internal Design System Preview",
+  description: "Internal development preview for Melrose RCV design tokens and components.",
+  path: "/design-system",
+};
+---
+
+<MainLayout meta={meta}>
+  <section class="section-band">
+    <div class="section-shell">
+      <Badge label="Internal dev preview" tone="gold" />
+      <div class="mt-5">
+        <SectionHeading
+          level={1}
+          title="Melrose RCV design system"
+          summary="This internal preview shows the brand tokens, component variants, and diagram styles. It should be removed or hidden before public launch."
+        />
+      </div>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <Button href="/what-is-rcv">Primary action</Button>
+        <Button href="/home-rule-petition" variant="secondary">Secondary action</Button>
+        <Button href="/sources" variant="ghost">Ghost action</Button>
+        <Button href="/contact" variant="support">Support action</Button>
+        <Button href="/donate" variant="donation">Donation action</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band bg-[var(--color-surface)]">
+    <div class="section-shell">
+      <SectionHeading
+        eyebrow="Components"
+        title="Cards, alerts, and source notes"
+        summary="Reusable primitives for civic education content, review placeholders, and trust-building source context."
+      />
+      <div class="mt-8 grid gap-5 md:grid-cols-3">
+        <Card variant="benefit" tone="green">
+          <h3 class="text-xl font-black">Benefit card</h3>
+          <p class="mt-2 text-sm text-[var(--color-ink-soft)]">Use for carefully sourced supporter arguments with caveats.</p>
+        </Card>
+        <Card variant="myth-fact" tone="lilac">
+          <h3 class="text-xl font-black">Myth/fact card</h3>
+          <p class="mt-2 text-sm text-[var(--color-ink-soft)]">Use for misconceptions and valid implementation concerns.</p>
+        </Card>
+        <Card variant="source" tone="blue">
+          <h3 class="text-xl font-black">Source card</h3>
+          <p class="mt-2 text-sm text-[var(--color-ink-soft)]">Use for claim support, source notes, and reliability labels.</p>
+        </Card>
+      </div>
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        <Alert title="Legal review placeholder" tone="legal">
+          <p class="m-0">Use alerts to keep process uncertainty visible without creating alarm.</p>
+        </Alert>
+        <SourceNote status="Example source note style for pending review." />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band">
+    <div class="section-shell">
+      <SectionHeading
+        eyebrow="Diagrams"
+        title="Ballot and counting styles"
+        summary="These examples show the visual language for RCV education. They are not official ballot instructions."
+      />
+      <div class="mt-8 grid gap-6">
+        <RankedBallot />
+        <CountingRounds />
+        <TransferFlow />
+      </div>
+    </div>
+  </section>
+</MainLayout>

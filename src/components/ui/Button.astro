@@ -1,15 +1,55 @@
 ---
 interface Props {
   href?: string;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "ghost" | "support" | "donation";
+  size?: "sm" | "md" | "lg";
   type?: "button" | "submit" | "reset";
+  class?: string;
+  ariaLabel?: string;
 }
 
-const { href, variant = "primary", type = "button" } = Astro.props;
-const className =
-  variant === "primary"
-    ? "focus-ring inline-flex items-center justify-center rounded-sm bg-[var(--color-civic-blue)] px-5 py-3 text-sm font-semibold text-white no-underline shadow-sm hover:bg-[#17476f]"
-    : "focus-ring inline-flex items-center justify-center rounded-sm border border-[var(--color-civic-blue)] px-5 py-3 text-sm font-semibold text-[var(--color-civic-blue)] no-underline hover:bg-white";
+const {
+  href,
+  variant = "primary",
+  size = "md",
+  type = "button",
+  class: className = "",
+  ariaLabel,
+} = Astro.props;
+
+const baseClass =
+  "focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-[var(--radius-2)] border font-bold no-underline transition duration-150 ease-out disabled:cursor-not-allowed disabled:opacity-60";
+
+const variantClass = {
+  primary:
+    "border-[var(--color-blue-700)] bg-[var(--color-blue-700)] text-white shadow-[var(--shadow-xs)] hover:border-[var(--color-blue-900)] hover:bg-[var(--color-blue-900)]",
+  secondary:
+    "border-[var(--color-line-strong)] bg-[var(--color-surface)] text-[var(--color-blue-900)] hover:border-[var(--color-blue-700)] hover:bg-[var(--color-blue-50)]",
+  ghost:
+    "border-transparent bg-transparent text-[var(--color-blue-900)] hover:bg-[var(--color-blue-50)]",
+  support:
+    "border-[var(--color-green-700)] bg-[var(--color-green-700)] text-white shadow-[var(--shadow-xs)] hover:border-[var(--color-green-900)] hover:bg-[var(--color-green-900)]",
+  donation:
+    "border-[var(--color-gold-700)] bg-[var(--color-gold-500)] text-[var(--color-gold-900)] shadow-[var(--shadow-xs)] hover:border-[var(--color-gold-900)] hover:bg-[var(--color-gold-100)]",
+}[variant];
+
+const sizeClass = {
+  sm: "px-3 py-2 text-sm",
+  md: "px-5 py-3 text-sm",
+  lg: "px-6 py-4 text-base",
+}[size];
+
+const classes = [baseClass, variantClass, sizeClass, className].filter(Boolean).join(" ");
 ---
 
-{href ? <a class={className} href={href}><slot /></a> : <button class={className} type={type}><slot /></button>}
+{
+  href ? (
+    <a class={classes} href={href} aria-label={ariaLabel}>
+      <slot />
+    </a>
+  ) : (
+    <button class={classes} type={type} aria-label={ariaLabel}>
+      <slot />
+    </button>
+  )
+}

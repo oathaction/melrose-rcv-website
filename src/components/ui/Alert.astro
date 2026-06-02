@@ -1,13 +1,21 @@
 ---
 interface Props {
   title?: string;
+  tone?: "note" | "caution" | "legal" | "success";
 }
 
-const { title = "Placeholder" } = Astro.props;
+const { title = "Placeholder", tone = "note" } = Astro.props;
+
+const toneClass = {
+  note: "border-[var(--color-blue-100)] bg-[var(--color-blue-50)] text-[var(--color-blue-900)]",
+  caution: "border-[var(--color-gold-100)] bg-[var(--color-gold-50)] text-[var(--color-gold-900)]",
+  legal: "border-[var(--color-lilac-100)] bg-[var(--color-lilac-50)] text-[var(--color-lilac-800)]",
+  success: "border-[var(--color-green-100)] bg-[var(--color-green-50)] text-[var(--color-green-900)]",
+}[tone];
 ---
 
-<div class="rounded-sm border border-[var(--color-civic-gold)] bg-amber-50 p-4 text-sm text-slate-800" role="note">
-  <p class="m-0 font-semibold">{title}</p>
+<div class:list={["rounded-[var(--radius-3)] border p-4 text-sm leading-[var(--leading-normal)]", toneClass]} role="note">
+  <p class="m-0 font-bold">{title}</p>
   <div class="mt-2">
     <slot />
   </div>

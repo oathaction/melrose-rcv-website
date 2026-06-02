@@ -1,12 +1,47 @@
 ---
-const rounds = ["Count first choices", "Check for majority", "Transfer next rankings"];
+const rounds = [
+  {
+    label: "Round 1",
+    title: "Count first choices",
+    summary: "Each ballot counts for the highest-ranked continuing candidate.",
+    tone: "blue",
+  },
+  {
+    label: "Round 2",
+    title: "Check the threshold",
+    summary: "If no candidate meets the required threshold, counting continues under the rules.",
+    tone: "gold",
+  },
+  {
+    label: "Round 3",
+    title: "Transfer next rankings",
+    summary: "Ballots for an eliminated candidate move to the next ranked continuing candidate.",
+    tone: "green",
+  },
+] as const;
 ---
 
-<div class="rounded-sm border border-[var(--color-civic-line)] bg-white p-5" aria-label="Placeholder counting rounds diagram">
-  <p class="m-0 text-sm font-semibold text-[var(--color-civic-blue)]">Counting rounds placeholder</p>
-  <ol class="mt-4 grid gap-3 p-0">
-    {rounds.map((round) => (
-      <li class="list-none rounded-sm bg-slate-50 p-3 text-sm text-slate-700">{round}</li>
+<div class="rounded-[var(--radius-4)] border border-[var(--color-line)] bg-[var(--color-surface)] p-5 shadow-[var(--shadow-xs)]" aria-label="Example counting rounds diagram">
+  <p class="m-0 text-sm font-black text-[var(--color-blue-900)]">Counting rounds style</p>
+  <ol class="mt-4 grid gap-4 p-0 md:grid-cols-3">
+    {rounds.map((round, index) => (
+      <li class="relative list-none rounded-[var(--radius-3)] border border-[var(--color-line)] bg-[var(--color-paper)] p-4">
+        <span class:list={[
+          "inline-flex rounded-[var(--radius-pill)] px-3 py-1 text-xs font-black uppercase tracking-normal",
+          round.tone === "blue" && "bg-[var(--color-blue-50)] text-[var(--color-blue-900)]",
+          round.tone === "gold" && "bg-[var(--color-gold-50)] text-[var(--color-gold-900)]",
+          round.tone === "green" && "bg-[var(--color-green-50)] text-[var(--color-green-900)]",
+        ]}>
+          {round.label}
+        </span>
+        <h3 class="mt-3 text-lg font-black">{round.title}</h3>
+        <p class="mt-2 text-sm text-[var(--color-ink-soft)]">{round.summary}</p>
+        {index < rounds.length - 1 && (
+          <span class="absolute -right-3 top-1/2 hidden size-6 -translate-y-1/2 place-items-center rounded-[var(--radius-pill)] bg-[var(--color-surface)] text-[var(--color-blue-700)] shadow-[var(--shadow-xs)] md:grid" aria-hidden="true">
+            -&gt;
+          </span>
+        )}
+      </li>
     ))}
   </ol>
 </div>

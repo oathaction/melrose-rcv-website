@@ -1,15 +1,55 @@
 ---
-const choices = ["1st choice", "2nd choice", "3rd choice"];
+const ranks = ["1st", "2nd", "3rd"];
+const candidates = ["Candidate A", "Candidate B", "Candidate C", "Candidate D"];
+const selected = new Map([
+  ["Candidate B", "1st"],
+  ["Candidate D", "2nd"],
+  ["Candidate A", "3rd"],
+]);
 ---
 
-<div class="rounded-sm border border-[var(--color-civic-line)] bg-white p-5" aria-label="Placeholder ranked ballot diagram">
-  <p class="m-0 text-sm font-semibold text-[var(--color-civic-blue)]">Ranked ballot placeholder</p>
-  <div class="mt-4 grid gap-3">
-    {choices.map((choice, index) => (
-      <div class="grid grid-cols-[2.5rem_1fr] items-center gap-3 rounded-sm border border-slate-200 p-3">
-        <span class="grid size-9 place-items-center rounded-sm bg-[var(--color-civic-blue)] text-sm font-bold text-white">{index + 1}</span>
-        <span class="text-sm text-slate-700">{choice}: Candidate placeholder</span>
-      </div>
-    ))}
+<figure class="m-0 rounded-[var(--radius-4)] border border-[var(--color-line)] bg-[var(--color-surface)] p-4 shadow-[var(--shadow-xs)]" aria-labelledby="ranked-ballot-title">
+  <figcaption id="ranked-ballot-title" class="text-sm font-black text-[var(--color-blue-900)]">
+    Example ranked ballot style
+  </figcaption>
+  <p class="mt-1 text-sm text-[var(--color-ink-soft)]">
+    Fictional candidates only. Final ballot design would need election-administration review.
+  </p>
+  <div class="mt-4 overflow-x-auto">
+    <table class="w-full min-w-[32rem] border-collapse text-sm">
+      <thead>
+        <tr>
+          <th class="border-b border-[var(--color-line)] p-3 text-left font-black text-[var(--color-ink)]">Candidate</th>
+          {ranks.map((rank) => (
+            <th class="border-b border-[var(--color-line)] p-3 text-center font-black text-[var(--color-ink)]">{rank} choice</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {candidates.map((candidate) => (
+          <tr class="border-b border-[var(--color-line)] last:border-b-0">
+            <th class="p-3 text-left font-bold text-[var(--color-ink)]">{candidate}</th>
+            {ranks.map((rank) => {
+              const isSelected = selected.get(candidate) === rank;
+              return (
+                <td class="p-3 text-center">
+                  <span
+                    class:list={[
+                      "mx-auto grid size-7 place-items-center rounded-[var(--radius-pill)] border-2",
+                      isSelected
+                        ? "border-[var(--color-blue-700)] bg-[var(--color-blue-700)] text-white"
+                        : "border-[var(--color-line-strong)] bg-white",
+                    ]}
+                    aria-label={isSelected ? `${candidate}, ${rank} choice selected` : `${candidate}, ${rank} choice not selected`}
+                  >
+                    {isSelected ? <span class="size-2 rounded-[var(--radius-pill)] bg-white" aria-hidden="true"></span> : null}
+                  </span>
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
   </div>
-</div>
+</figure>

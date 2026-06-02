@@ -1,15 +1,28 @@
 ---
-const steps = ["Voter rankings", "Lowest candidate round", "Next active choice"];
+const steps = [
+  "First choice is no longer continuing",
+  "Find next ranked continuing choice",
+  "Ballot counts in the next round",
+];
 ---
 
-<div class="rounded-sm border border-[var(--color-civic-line)] bg-white p-5" aria-label="Placeholder transfer flow diagram">
-  <p class="m-0 text-sm font-semibold text-[var(--color-civic-blue)]">Transfer flow placeholder</p>
-  <div class="mt-4 flex flex-col gap-3 md:flex-row md:items-center">
+<div class="rounded-[var(--radius-4)] border border-[var(--color-line)] bg-[var(--color-surface)] p-5 shadow-[var(--shadow-xs)]" aria-label="Example transfer flow diagram">
+  <p class="m-0 text-sm font-black text-[var(--color-blue-900)]">Transfer flow style</p>
+  <div class="mt-4 grid gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-center">
     {steps.map((step, index) => (
       <>
-        <span class="rounded-sm bg-emerald-50 px-3 py-2 text-sm font-medium text-slate-700">{step}</span>
-        {index < steps.length - 1 && <span class="hidden text-[var(--color-civic-green)] md:inline" aria-hidden="true">-&gt;</span>}
+        <div class="rounded-[var(--radius-3)] border border-[var(--color-green-100)] bg-[var(--color-green-50)] p-4 text-sm font-bold text-[var(--color-green-900)]">
+          {step}
+        </div>
+        {index < steps.length - 1 && (
+          <span class="grid size-8 place-items-center justify-self-center rounded-[var(--radius-pill)] bg-[var(--color-blue-50)] text-[var(--color-blue-900)]" aria-hidden="true">
+            -&gt;
+          </span>
+        )}
       </>
     ))}
   </div>
+  <p class="mt-4 text-sm text-[var(--color-ink-soft)]">
+    This visual style explains the concept only. Local rules for ballot treatment must be verified before public voter instructions.
+  </p>
 </div>
