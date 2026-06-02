@@ -1,15 +1,45 @@
 ---
+import Button from "../ui/Button.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 import SourceNote from "../ui/SourceNote.astro";
 ---
 
-<section class="bg-white">
-  <div class="section-shell grid gap-6 py-12 md:grid-cols-[1fr_0.8fr]">
-    <SectionHeading
-      eyebrow="RCV basics"
-      title="What is ranked-choice voting?"
-      summary="Placeholder copy for a future plain-language explanation of ranking candidates and counting ballots in rounds."
-    />
-    <SourceNote status="Definition and claims need source review before launch." />
+<section id="what-is-rcv" class="section-band bg-white">
+  <div class="section-shell grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+    <div>
+      <SectionHeading
+        eyebrow="RCV basics"
+        title="Rank candidates in the order you prefer"
+        summary="Ranked-choice voting lets voters rank candidates instead of choosing only one. Your first choice is counted first; later rankings are backup choices if an earlier-ranked candidate is eliminated."
+      />
+      <div class="mt-6 flex flex-wrap gap-3">
+        <Button href="/what-is-rcv" variant="secondary">Read the plain-language guide</Button>
+        <Button href="#questions" variant="ghost">Questions worth asking</Button>
+      </div>
+    </div>
+
+    <div class="grid gap-4">
+      <div class="rounded-[var(--radius-4)] border border-[var(--color-line)] bg-[var(--color-paper)] p-5">
+        <p class="eyebrow">One ballot, more expression</p>
+        <div class="mt-5 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-[var(--radius-3)] bg-white p-4 shadow-[var(--shadow-xs)]">
+            <p class="m-0 text-3xl font-black text-[var(--color-blue-700)]">1</p>
+            <p class="mt-2 font-black">Favorite</p>
+            <p class="mt-1 text-sm text-[var(--color-ink-soft)]">Counted first.</p>
+          </div>
+          <div class="rounded-[var(--radius-3)] bg-white p-4 shadow-[var(--shadow-xs)]">
+            <p class="m-0 text-3xl font-black text-[var(--color-green-700)]">2</p>
+            <p class="mt-2 font-black">Backup</p>
+            <p class="mt-1 text-sm text-[var(--color-ink-soft)]">Can count if needed.</p>
+          </div>
+          <div class="rounded-[var(--radius-3)] bg-white p-4 shadow-[var(--shadow-xs)]">
+            <p class="m-0 text-3xl font-black text-[var(--color-gold-700)]">3</p>
+            <p class="mt-2 font-black">Another option</p>
+            <p class="mt-1 text-sm text-[var(--color-ink-soft)]">Still only one active vote.</p>
+          </div>
+        </div>
+      </div>
+      <SourceNote tone="verified" status="Definition supported by NCSL, NYC Votes, Minneapolis, and MIT Election Lab source reviews." />
+    </div>
   </div>
 </section>
