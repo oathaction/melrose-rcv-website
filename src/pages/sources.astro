@@ -1,27 +1,122 @@
 ---
 import MainLayout from "../components/layout/MainLayout.astro";
-import SectionHeading from "../components/ui/SectionHeading.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import PageCTA from "../components/sections/PageCTA.astro";
+import Alert from "../components/ui/Alert.astro";
+import Card from "../components/ui/Card.astro";
 import SourceNote from "../components/ui/SourceNote.astro";
-import { citationStandards } from "../lib/citations";
 import { sources } from "../content/data/sources";
+import { citationStandards } from "../lib/citations";
 import { getPageMeta } from "../lib/seo";
+
+const sourceGroups = [
+  {
+    title: "RCV explainers",
+    ids: ["ncsl-rcv", "mit-irv", "fairvote-rcv", "nyc-votes-rcv", "minneapolis-rcv", "boulder-rcv"],
+  },
+  {
+    title: "Official election resources",
+    ids: ["maine-sos-rcv", "nyc-boe-rcv", "melrose-elections", "ma-ballot-question"],
+  },
+  {
+    title: "Melrose sources",
+    ids: ["melrose-elections", "melrose-charter", "melrose-charter-article-2", "melrose-2025-results", "mma-melrose"],
+  },
+  {
+    title: "Massachusetts home rule and legal sources",
+    ids: ["ma-constitution", "ma-ch43b", "ma-ballot-question", "ma-s531", "ma-h4262-boston", "boston-rcv"],
+  },
+  {
+    title: "RCV usage and history",
+    ids: ["cambridge-election", "maine-sos-rcv", "nyc-votes-rcv", "nyc-boe-rcv", "minneapolis-rcv", "boulder-rcv"],
+  },
+  {
+    title: "Design and voter education resources",
+    ids: ["center-civic-design-rcv", "rcvrc", "ncsl-implementation", "pettigrew-radley"],
+  },
+];
+
+const sourceById = new Map(sources.map((source) => [source.id, source]));
+
+const slugify = (value: string) => value.toLowerCase().replaceAll(" ", "-");
 ---
 
 <MainLayout meta={getPageMeta("/sources")}>
-  <section class="section-shell py-12">
-    <SectionHeading
-      eyebrow="Sources"
-      title="Source log"
-      summary="No substantive citations have been added yet. This page documents standards and future source entries."
-    />
-    <div class="mt-6">
-      <SourceNote status="Source entries are intentionally empty until research is complete." />
+  <PageHero
+    eyebrow="Sources"
+    title="The source log is part of the promise"
+    summary="Every major factual claim on this site should trace back to an official, research, civic-design, or clearly labeled advocacy source."
+    primaryHref="/faq"
+    primaryLabel="Read the FAQ"
+    secondaryHref="/contact"
+    secondaryLabel="Suggest a correction"
+  />
+
+  <section class="section-band bg-white">
+    <div class="section-shell grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+      <div>
+        <p class="eyebrow">Citation standards</p>
+        <h2 class="mt-2 text-3xl font-black">Use official sources where authority matters</h2>
+        <p class="mt-4 text-lg leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">
+          Legal, municipal, and election-administration claims should rely on official sources and still be marked for review where interpretation is required. Advocacy sources can help explain arguments but should not carry legal claims alone.
+        </p>
+      </div>
+      <SourceNote tone="verified" status={`Current structured source count: ${sources.length}. Access dates are included in the source records.`} />
     </div>
-    <ul class="mt-6 grid gap-3 p-0">
-      {citationStandards.map((standard) => (
-        <li class="list-none rounded-sm border border-[var(--color-civic-line)] bg-white p-4">{standard}</li>
-      ))}
-    </ul>
-    <p class="mt-6 text-sm text-slate-700">Current source count: {sources.length}</p>
+    <div class="section-shell pt-0">
+      <ul class="grid gap-3 p-0 md:grid-cols-2">
+        {citationStandards.map((standard) => (
+          <li class="list-none rounded-[var(--radius-3)] border border-[var(--color-line)] bg-[var(--color-paper)] p-4 text-sm font-bold text-[var(--color-ink)]">{standard}</li>
+        ))}
+      </ul>
+    </div>
   </section>
+
+  <section class="section-band bg-[var(--color-paper)]">
+    <div class="section-shell grid gap-8">
+      {sourceGroups.map((group) => (
+        <section aria-labelledby={`sources-${slugify(group.title)}`}>
+          <h2 id={`sources-${slugify(group.title)}`} class="text-2xl font-black">{group.title}</h2>
+          <div class="mt-4 grid gap-4 md:grid-cols-2">
+            {group.ids.map((id) => {
+              const source = sourceById.get(id);
+              if (!source) return null;
+              return (
+                <Card variant="source" tone={source.reliability === "high" ? "green" : "plain"} class="h-full">
+                  <p class="m-0 text-xs font-black uppercase text-[var(--color-blue-900)]">{source.id} | {source.status.replaceAll("-", " ")}</p>
+                  <h3 class="mt-3 text-xl font-black">
+                    <a class="text-[var(--color-ink-strong)] underline decoration-[var(--color-blue-200)] underline-offset-4 hover:decoration-[var(--color-blue-700)]" href={source.url}>{source.title}</a>
+                  </h3>
+                  <p class="mt-2 text-sm font-bold text-[var(--color-ink)]">{source.publisher}</p>
+                  {source.supports && <p class="mt-3 text-sm leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">{source.supports}</p>}
+                  <dl class="mt-4 grid gap-2 text-xs leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">
+                    <div><dt class="inline font-black text-[var(--color-ink)]">Accessed:</dt> <dd class="inline">{source.accessed ?? "Access date pending"}</dd></div>
+                    <div><dt class="inline font-black text-[var(--color-ink)]">Reliability:</dt> <dd class="inline">{source.reliability ?? "Pending"}</dd></div>
+                    <div><dt class="inline font-black text-[var(--color-ink)]">Caveat:</dt> <dd class="inline">{source.note}</dd></div>
+                  </dl>
+                </Card>
+              );
+            })}
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-band bg-white">
+    <div class="section-shell">
+      <Alert title="Corrections are welcome" tone="note">
+        <p class="m-0">If a source is outdated, misclassified, or missing important context, the site should be corrected before public copy leans on that claim.</p>
+      </Alert>
+    </div>
+  </section>
+
+  <PageCTA
+    title="See how the sources answer common questions"
+    summary="The FAQ connects resident questions to the source framework and marks legal or implementation placeholders."
+    primaryHref="/faq"
+    primaryLabel="Read the FAQ"
+    secondaryHref="/contact"
+    secondaryLabel="Suggest a source"
+  />
 </MainLayout>
