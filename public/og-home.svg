@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Melrose RCV</title>
+  <desc id="desc">Open graph image for Melrose RCV, a nonpartisan civic education project.</desc>
+  <rect width="1200" height="630" fill="#fbfaf6"/>
+  <path d="M0 0h1200v630H0z" fill="#fbfaf6"/>
+  <path d="M0 0h1200v170H0z" fill="#edf6fb"/>
+  <g fill="none" stroke="#d8e0e5" stroke-width="2" opacity="0.8">
+    <path d="M0 170h1200M0 250h1200M0 330h1200M0 410h1200M0 490h1200"/>
+    <path d="M160 0v630M320 0v630M480 0v630M640 0v630M800 0v630M960 0v630"/>
+  </g>
+  <rect x="78" y="78" width="1044" height="474" rx="18" fill="#ffffff" stroke="#d8e0e5" stroke-width="3"/>
+  <rect x="118" y="118" width="92" height="92" rx="12" fill="#255f85"/>
+  <text x="164" y="176" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="800" fill="#ffffff">RCV</text>
+  <text x="118" y="292" font-family="Arial, sans-serif" font-size="82" font-weight="900" fill="#111827">Melrose RCV</text>
+  <text x="118" y="362" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#2f745d">Nonpartisan civic education</text>
+  <text x="118" y="426" font-family="Arial, sans-serif" font-size="30" fill="#52606d">Ranked-choice voting and the home rule petition path</text>
+  <g transform="translate(790 145)">
+    <rect width="250" height="300" rx="14" fill="#fbfaf6" stroke="#d8e0e5" stroke-width="3"/>
+    <text x="28" y="56" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#1b2430">Ranked ballot</text>
+    <g transform="translate(30 92)">
+      <rect width="190" height="48" rx="8" fill="#edf7f2"/>
+      <text x="20" y="31" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#214d40">1 Park cleanup</text>
+    </g>
+    <g transform="translate(30 156)">
+      <rect width="190" height="48" rx="8" fill="#edf6fb"/>
+      <text x="20" y="31" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#173f59">2 Library forum</text>
+    </g>
+    <g transform="translate(30 220)">
+      <rect width="190" height="48" rx="8" fill="#fff6df"/>
+      <text x="20" y="31" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#5c3b14">3 Main St. walk</text>
+    </g>
+  </g>
+</svg>
