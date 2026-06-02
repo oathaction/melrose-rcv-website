@@ -4,20 +4,31 @@ import Card from "../ui/Card.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 ---
 
-<section class="bg-[var(--color-civic-paper)]">
-  <div class="section-shell py-12">
+<section id="why-melrose" class="section-band bg-[var(--color-paper)]">
+  <div class="section-shell">
     <SectionHeading
-      eyebrow="Potential benefits"
-      title="Benefits need source-grounded explanation"
-      summary="These cards reserve space for future claims that should be verified and cited."
+      eyebrow="Why RCV for Melrose?"
+      title="Supporters see a practical local conversation"
+      summary="The case for RCV should be persuasive, but honest: these are possible benefits and civic goals, not guaranteed outcomes."
     />
-    <div class="mt-8 grid gap-4 md:grid-cols-3">
-      {benefits.map((benefit) => (
-        <Card>
-          <h3 class="m-0 text-lg font-semibold">{benefit.title}</h3>
-          <p class="mt-2 text-sm text-slate-700">{benefit.summary}</p>
+    <div class="mt-8 grid gap-4 md:grid-cols-2">
+      {benefits.map((benefit, index) => (
+        <Card variant="benefit" tone={index % 2 === 0 ? "green" : "plain"} class="h-full">
+          <h3 class="m-0 text-xl font-black">{benefit.title}</h3>
+          <p class="mt-3 text-sm leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">{benefit.summary}</p>
+          {benefit.sourceIds && (
+            <p class="mt-4 text-xs font-bold uppercase text-[var(--color-green-900)]">
+              Sources: {benefit.sourceIds.join(", ")}
+            </p>
+          )}
         </Card>
       ))}
+    </div>
+    <div class="mt-6 rounded-[var(--radius-4)] border border-[var(--color-rust-100)] bg-[var(--color-rust-50)] p-5 text-[var(--color-rust-800)]">
+      <p class="m-0 font-black">What this page will not claim</p>
+      <p class="mt-2 text-sm leading-[var(--leading-normal)]">
+        RCV does not guarantee higher turnout, lower costs, more civil campaigns, better candidates, or perfect majority outcomes. Melrose-specific impacts would need review.
+      </p>
     </div>
   </div>
 </section>
