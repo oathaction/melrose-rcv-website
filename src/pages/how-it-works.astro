@@ -1,11 +1,94 @@
 ---
 import MainLayout from "../components/layout/MainLayout.astro";
-import HowRCVWorks from "../components/sections/HowRCVWorks.astro";
-import RealExample from "../components/sections/RealExample.astro";
+import CountingRounds from "../components/diagrams/CountingRounds.astro";
+import RankedBallot from "../components/diagrams/RankedBallot.astro";
+import TransferFlow from "../components/diagrams/TransferFlow.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import PageCTA from "../components/sections/PageCTA.astro";
+import Alert from "../components/ui/Alert.astro";
+import Card from "../components/ui/Card.astro";
+import SourceNote from "../components/ui/SourceNote.astro";
 import { getPageMeta } from "../lib/seo";
+
+const steps = [
+  ["1", "Mark rankings", "A voter marks candidates in order of preference if the ballot allows multiple rankings."],
+  ["2", "Count first choices", "The count starts with first-choice votes."],
+  ["3", "Check the threshold", "If a candidate meets the winning threshold under the rules, that candidate wins."],
+  ["4", "Eliminate and transfer", "If no one reaches the threshold, the lowest candidate is eliminated and ballots can transfer to next ranked continuing candidates."],
+  ["5", "Repeat as needed", "Rounds continue until a winner is determined under the applicable rules."],
+];
 ---
 
 <MainLayout meta={getPageMeta("/how-it-works")}>
-  <HowRCVWorks />
-  <RealExample />
+  <PageHero
+    eyebrow="How it works"
+    title="How ranked-choice voting counts ballots"
+    summary="Single-winner RCV counts first choices first, then uses runoff-style rounds if no candidate reaches the winning threshold."
+    primaryHref="/why-melrose"
+    primaryLabel="Why consider it?"
+    secondaryHref="/myths-and-facts"
+    secondaryLabel="Read concerns"
+    status="This is a general explanation, not official Melrose ballot instruction. Local ballot rules would need election-administration review."
+  />
+
+  <section class="section-band bg-white">
+    <div class="section-shell">
+      <div class="grid gap-5 lg:grid-cols-[1fr_0.8fr] lg:items-start">
+        <div>
+          <p class="eyebrow">Step by step</p>
+          <h2 class="mt-2 text-3xl font-black">A ballot counts for one continuing candidate at a time</h2>
+          <p class="mt-4 text-lg text-[var(--color-ink-soft)]">
+            Later rankings are backup choices. Ranking a second choice does not take support away from a first choice while the first choice remains in the count.
+          </p>
+        </div>
+        <SourceNote tone="verified" status="Counting explanation supported by MIT Election Lab, NCSL, NYC Votes, and Boulder County examples." />
+      </div>
+      <ol class="mt-8 grid gap-4 p-0 md:grid-cols-2 lg:grid-cols-5">
+        {steps.map(([number, title, summary]) => (
+          <li class="list-none rounded-[var(--radius-4)] border border-[var(--color-blue-100)] bg-[var(--color-blue-50)] p-5">
+            <span class="grid size-9 place-items-center rounded-[var(--radius-pill)] bg-[var(--color-blue-700)] text-sm font-black text-white">{number}</span>
+            <h3 class="mt-4 text-lg font-black">{title}</h3>
+            <p class="mt-2 text-sm leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">{summary}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section-band bg-[var(--color-paper)]">
+    <div class="section-shell grid gap-6">
+      <RankedBallot />
+      <div class="grid gap-6 lg:grid-cols-2">
+        <CountingRounds />
+        <TransferFlow />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band bg-white">
+    <div class="section-shell grid gap-5 md:grid-cols-3">
+      <Card variant="source">
+        <h2 class="text-xl font-black">Transfers are not extra votes</h2>
+        <p class="mt-3 text-sm text-[var(--color-ink-soft)]">A transfer means a ballot moves to the next ranked continuing candidate if an earlier-ranked candidate is eliminated.</p>
+        <p class="mt-4 text-xs font-bold uppercase text-[var(--color-blue-900)]">Sources: mit-irv, nyc-votes-rcv</p>
+      </Card>
+      <Card variant="source" tone="gold">
+        <h2 class="text-xl font-black">Some ballots can become inactive</h2>
+        <p class="mt-3 text-sm text-[var(--color-ink-soft)]">If no valid ranked continuing candidate remains, a ballot may become exhausted or inactive in later rounds.</p>
+        <p class="mt-4 text-xs font-bold uppercase text-[var(--color-gold-900)]">Sources: ncsl-implementation</p>
+      </Card>
+      <Alert title="Ballot design matters" tone="legal">
+        <p class="m-0">Melrose-specific rank limits, skipped rankings, overvotes, write-ins, tabulation, audits, and recounts would need official review.</p>
+      </Alert>
+    </div>
+  </section>
+
+  <PageCTA
+    title="Now ask whether this belongs in Melrose"
+    summary="The case for RCV should include possible benefits, tradeoffs, costs, legal review, and voter education."
+    primaryHref="/why-melrose"
+    primaryLabel="Why Melrose?"
+    secondaryHref="/faq"
+    secondaryLabel="Read the FAQ"
+  />
 </MainLayout>

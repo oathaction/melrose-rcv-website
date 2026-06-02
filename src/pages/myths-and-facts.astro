@@ -1,9 +1,74 @@
 ---
+import { myths } from "../content/data/myths";
 import MainLayout from "../components/layout/MainLayout.astro";
-import MythsPreview from "../components/sections/MythsPreview.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import PageCTA from "../components/sections/PageCTA.astro";
+import Alert from "../components/ui/Alert.astro";
+import Card from "../components/ui/Card.astro";
+import SourceNote from "../components/ui/SourceNote.astro";
 import { getPageMeta } from "../lib/seo";
 ---
 
 <MainLayout meta={getPageMeta("/myths-and-facts")}>
-  <MythsPreview />
+  <PageHero
+    eyebrow="Myths and facts"
+    title="Common RCV concerns deserve clear answers"
+    summary="Some objections to RCV are misconceptions. Others are real implementation questions. This page treats both respectfully."
+    primaryHref="/faq"
+    primaryLabel="Read the FAQ"
+    secondaryHref="/contact"
+    secondaryLabel="Ask a question"
+  />
+
+  <section class="section-band bg-white">
+    <div class="section-shell grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+      <div>
+        <p class="eyebrow">A better conversation</p>
+        <h2 class="mt-2 text-3xl font-black">No mocking, no magic claims</h2>
+        <p class="mt-4 text-lg leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">
+          Melrose residents should be able to ask hard questions about confusion, cost, tabulation, audits, and political effects without being dismissed. The campaign's job is to answer with sources and name what still needs review.
+        </p>
+      </div>
+      <SourceNote tone="verified" status="Responses draw from NCSL, MIT Election Lab, official city/state RCV resources, Center for Civic Design, and implementation research." />
+    </div>
+  </section>
+
+  <section class="section-band bg-[var(--color-paper)]">
+    <div class="section-shell">
+      <h2 class="text-3xl font-black">Myths, facts, and real tradeoffs</h2>
+      <div class="mt-8 grid gap-4 md:grid-cols-2">
+        {myths.map((myth) => (
+          <Card variant="myth-fact" tone={myth.reviewStatus === "legal-review-placeholder" ? "lilac" : "plain"} class="h-full">
+            <p class="m-0 text-xs font-black uppercase text-[var(--color-lilac-800)]">{myth.category}</p>
+            <h3 class="mt-3 text-xl font-black">{myth.title}</h3>
+            <p class="mt-3 text-sm leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">{myth.summary}</p>
+            {myth.sourceIds && <p class="mt-4 text-xs font-bold uppercase text-[var(--color-lilac-800)]">Sources: {myth.sourceIds.join(", ")}</p>}
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band bg-white">
+    <div class="section-shell grid gap-4 md:grid-cols-3">
+      <Alert title="Legitimate concern" tone="caution">
+        <p class="m-0">Voter education, ballot design, tabulation, results reporting, audits, recounts, and cost are real questions.</p>
+      </Alert>
+      <Alert title="Misconception" tone="note">
+        <p class="m-0">A transferred ballot is not an extra vote. In single-winner RCV, each ballot counts for one continuing candidate at a time.</p>
+      </Alert>
+      <Alert title="Overclaim to avoid" tone="legal">
+        <p class="m-0">Do not promise RCV will fix local politics, guarantee better candidates, or automatically save money.</p>
+      </Alert>
+    </div>
+  </section>
+
+  <PageCTA
+    title="Have a concern that is not listed?"
+    summary="Send it in. The strongest public education effort answers skeptical questions directly and updates the source log when better information appears."
+    primaryHref="/contact"
+    primaryLabel="Ask a question"
+    secondaryHref="/sources"
+    secondaryLabel="Review sources"
+  />
 </MainLayout>

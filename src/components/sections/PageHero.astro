@@ -1,0 +1,49 @@
+---
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  summary: string;
+  primaryHref?: string;
+  primaryLabel?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  status?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  summary,
+  primaryHref,
+  primaryLabel,
+  secondaryHref,
+  secondaryLabel,
+  status,
+} = Astro.props;
+---
+
+<section class="border-b border-[var(--color-line)] bg-[var(--color-paper)]">
+  <div class="section-shell py-12 md:py-16">
+    <Badge label={eyebrow} tone="green" />
+    <h1 class="mt-5 max-w-4xl text-[clamp(2.25rem,6vw,4.5rem)] font-black leading-[1] text-[var(--color-ink-strong)]">
+      {title}
+    </h1>
+    <p class="mt-5 max-w-3xl text-lg leading-[var(--leading-normal)] text-[var(--color-ink-soft)] md:text-xl">
+      {summary}
+    </p>
+    {(primaryHref || secondaryHref) && (
+      <div class="mt-7 flex flex-wrap gap-3">
+        {primaryHref && primaryLabel && <Button href={primaryHref}>{primaryLabel}</Button>}
+        {secondaryHref && secondaryLabel && <Button href={secondaryHref} variant="secondary">{secondaryLabel}</Button>}
+      </div>
+    )}
+    {status && (
+      <p class="mt-5 max-w-3xl rounded-[var(--radius-3)] border border-[var(--color-gold-100)] bg-[var(--color-gold-50)] p-4 text-sm font-semibold leading-[var(--leading-normal)] text-[var(--color-gold-900)]">
+        {status}
+      </p>
+    )}
+  </div>
+</section>

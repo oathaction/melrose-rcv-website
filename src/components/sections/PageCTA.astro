@@ -1,0 +1,47 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+  title: string;
+  summary: string;
+  primaryHref: string;
+  primaryLabel: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  tone?: "paper" | "ink";
+}
+
+const {
+  title,
+  summary,
+  primaryHref,
+  primaryLabel,
+  secondaryHref,
+  secondaryLabel,
+  tone = "paper",
+} = Astro.props;
+
+const wrapperClass =
+  tone === "ink"
+    ? "bg-[var(--color-ink)] text-white"
+    : "bg-[var(--color-paper)] text-[var(--color-ink)]";
+const summaryClass = tone === "ink" ? "text-slate-200" : "text-[var(--color-ink-soft)]";
+---
+
+<section class:list={["section-band", wrapperClass]}>
+  <div class="section-shell">
+    <div class:list={[
+      "rounded-[var(--radius-4)] border p-6 shadow-[var(--shadow-sm)] md:p-8",
+      tone === "ink" ? "border-white/15 bg-white/8" : "border-[var(--color-line)] bg-white",
+    ]}>
+      <h2 class:list={["text-[clamp(1.75rem,4vw,3rem)] font-black", tone === "ink" ? "text-white" : "text-[var(--color-ink-strong)]"]}>
+        {title}
+      </h2>
+      <p class:list={["mt-4 max-w-3xl text-lg leading-[var(--leading-normal)]", summaryClass]}>{summary}</p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <Button href={primaryHref}>{primaryLabel}</Button>
+        {secondaryHref && secondaryLabel && <Button href={secondaryHref} variant={tone === "ink" ? "secondary" : "ghost"}>{secondaryLabel}</Button>}
+      </div>
+    </div>
+  </div>
+</section>

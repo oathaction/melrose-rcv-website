@@ -1,11 +1,109 @@
 ---
+import { homeRuleSteps } from "../content/data/homeRuleSteps";
 import MainLayout from "../components/layout/MainLayout.astro";
-import HomeRulePathway from "../components/sections/HomeRulePathway.astro";
-import PetitionTimeline from "../components/sections/PetitionTimeline.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import PageCTA from "../components/sections/PageCTA.astro";
+import Alert from "../components/ui/Alert.astro";
+import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
+import SourceNote from "../components/ui/SourceNote.astro";
 import { getPageMeta } from "../lib/seo";
+
+const decisions = [
+  "Exact local approval process.",
+  "Petition sponsor and filing path.",
+  "Office scope and counting method for each office type.",
+  "Whether a local voter-approval question is required or advisable.",
+  "Equipment, software, audits, recounts, costs, and voter education.",
+];
 ---
 
 <MainLayout meta={getPageMeta("/home-rule-petition")}>
-  <HomeRulePathway />
-  <PetitionTimeline />
+  <PageHero
+    eyebrow="Home rule petition"
+    title="The practical path to RCV in Melrose"
+    summary="A Melrose RCV proposal would likely need local civic action and state authorization through a Massachusetts home rule petition. Local approval would not make implementation automatic."
+    primaryHref="/contact"
+    primaryLabel="Ask a question or get involved"
+    secondaryHref="/sources"
+    secondaryLabel="Read sources"
+    status="This page is not legal advice. Final petition language and process details require Massachusetts municipal and election-law review."
+  />
+
+  <section class="section-band bg-white">
+    <div class="section-shell grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <p class="eyebrow">What it is</p>
+        <h2 class="mt-2 text-3xl font-black">A local request for state authority</h2>
+        <p class="mt-4 text-lg text-[var(--color-ink-soft)]">
+          In Massachusetts, a home rule petition is a way for a city or town to ask the Legislature for a special law that applies locally. Article LXXXIX describes how the General Court may act by special laws relating to a particular municipality.
+        </p>
+      </div>
+      <SourceNote tone="verified" status="Home rule framing uses Massachusetts Constitution Article LXXXIX, Chapter 43B, and Secretary of the Commonwealth ballot-question guidance. Legal interpretation requires counsel." />
+    </div>
+  </section>
+
+  <section class="section-band bg-[var(--color-paper)]">
+    <div class="section-shell">
+      <p class="eyebrow">Pathway</p>
+      <h2 class="mt-2 text-3xl font-black">Steps that need public and legal review</h2>
+      <ol class="mt-8 grid gap-4 p-0 lg:grid-cols-3">
+        {homeRuleSteps.map((step, index) => (
+          <li class="list-none">
+            <Card variant="timeline" tone={step.status === "verified" ? "green" : "lilac"} class="h-full">
+              <p class="m-0 flex items-center gap-2 text-xs font-black uppercase text-[var(--color-lilac-800)]">
+                <span class="grid size-8 place-items-center rounded-[var(--radius-pill)] bg-white">{index + 1}</span>
+                {step.status.replaceAll("-", " ")}
+              </p>
+              <h3 class="mt-4 text-xl font-black">{step.label}</h3>
+              <p class="mt-3 text-sm leading-[var(--leading-normal)] text-[var(--color-ink-soft)]">{step.summary}</p>
+              {step.reviewNote && <p class="mt-4 text-xs font-bold uppercase text-[var(--color-rust-800)]">{step.reviewNote}</p>}
+            </Card>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section-band bg-white">
+    <div class="section-shell grid gap-8 lg:grid-cols-[1fr_0.9fr]">
+      <div>
+        <p class="eyebrow">Decisions still to be made</p>
+        <h2 class="mt-2 text-3xl font-black">The petition text would need to answer real questions</h2>
+        <ul class="mt-6 grid gap-3 p-0">
+          {decisions.map((decision) => (
+            <li class="list-none rounded-[var(--radius-3)] border border-[var(--color-line)] bg-[var(--color-paper)] p-4 font-bold text-[var(--color-ink)]">{decision}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="grid gap-4">
+        <Alert title="State approval is not guaranteed" tone="legal">
+          <p class="m-0">A bill may be heard, amended, reported, studied, passed, or not advanced. Boston's example does not settle Melrose's path.</p>
+        </Alert>
+        <Alert title="Implementation is separate" tone="caution">
+          <p class="m-0">Even if authorized, Melrose would still need practical election-administration planning before any first use.</p>
+        </Alert>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band bg-[var(--color-lilac-50)]">
+    <div class="section-shell">
+      <h2 class="text-3xl font-black">How residents can help</h2>
+      <p class="mt-4 max-w-3xl text-lg text-[var(--color-ink-soft)]">Join updates, ask questions, attend public meetings, volunteer for outreach, review source-backed materials, and share careful information with neighbors.</p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <Button href="/contact">Ask a question</Button>
+        <Button href="/sources" variant="secondary">Check sources</Button>
+      </div>
+    </div>
+  </section>
+
+  <PageCTA
+    title="Help make the process understandable"
+    summary="The strongest campaign will make legal review, public questions, and implementation needs visible from the start."
+    primaryHref="/contact"
+    primaryLabel="Contact Melrose RCV"
+    secondaryHref="/faq"
+    secondaryLabel="Read the FAQ"
+  />
 </MainLayout>
